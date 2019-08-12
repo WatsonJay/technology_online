@@ -25,6 +25,8 @@
         <swagger2.version>2.9.2</swagger2.version>
         <swagger-bootstrap-ui.version>1.9.5</swagger-bootstrap-ui.version>
         <mybatis-plus.version>3.1.2</mybatis-plus.version>
+        <druid.version>1.1.10</druid.version>
+        <mysql-connector-java.version>8.0.15</mysql-connector-java.version>
     </properties>
 
     <!--声明子模块 -->
@@ -65,6 +67,18 @@
             <artifactId>pagehelper</artifactId>
             <version>${pagehelper.version}</version>
         </dependency>
+        <!--接口文档插件-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger2.version}</version>
+        </dependency>
+        <!--接口文档可视化-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>${swagger-bootstrap-ui.version}</version>
+        </dependency>
         <!--JDBC-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -81,17 +95,17 @@
             <artifactId>mybatisplus-spring-boot-starter</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
-        <!--接口文档插件-->
+
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger2.version}</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
         </dependency>
-        <!--接口文档可视化-->
+
         <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>${swagger-bootstrap-ui.version}</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
         </dependency>
     </dependencies>
 
