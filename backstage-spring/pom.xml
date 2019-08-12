@@ -24,6 +24,7 @@
         <pagehelper.version>5.0.3</pagehelper.version>
         <swagger2.version>2.9.2</swagger2.version>
         <swagger-bootstrap-ui.version>1.9.5</swagger-bootstrap-ui.version>
+        <mybatis-plus.version>3.1.2</mybatis-plus.version>
     </properties>
 
     <!--声明子模块 -->
@@ -52,6 +53,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!-- log4j 不加此依赖Druid的filters拦截会报错 在properties配置文件中filters中有体现 -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
         <!--分页插件-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
@@ -63,6 +70,17 @@
             <!--<groupId>org.springframework.boot</groupId>-->
             <!--<artifactId>spring-boot-starter-jdbc</artifactId>-->
         <!--</dependency>-->
+        <!-- MyBatisPlus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatisplus-spring-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
         <!--接口文档插件-->
         <dependency>
             <groupId>io.springfox</groupId>
