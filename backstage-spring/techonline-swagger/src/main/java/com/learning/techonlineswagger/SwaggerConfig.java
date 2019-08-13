@@ -25,7 +25,6 @@ public class SwaggerConfig {
                 .select() // 选择那些路径和api会生成document
                 // 对指定api进行监控
                 .apis(RequestHandlerSelectors.basePackage("com.learning.techonlineauthority.controller"))
-                //不显示错误和测试的接口地址
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())
