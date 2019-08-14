@@ -39,3 +39,4 @@ yarn-error.log*
 /.nb-gradle/
 back_sprinboot/build/
 
+backstage-spring/log/test.log
