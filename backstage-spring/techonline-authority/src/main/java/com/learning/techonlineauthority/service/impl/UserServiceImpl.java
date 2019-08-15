@@ -5,6 +5,7 @@ import com.learning.techonlineauthority.mapper.UserMapper;
 import com.learning.techonlineauthority.service.UserService;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserAddDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
+import com.learning.techonlineutil.EntityObjectConverter;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,6 +21,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements 
 
     @Override
     public void newUser(UserAddDTO userAdd){
-        UserPO user = EntryObjectConverter
+        UserPO user = EntityObjectConverter.getObject(userAdd, UserPO.class);
     }
 }

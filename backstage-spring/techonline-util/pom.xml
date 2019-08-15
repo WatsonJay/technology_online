@@ -30,6 +30,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-core</artifactId>
+            <version>6.4.1</version>
+        </dependency>
         <!--依赖组件引入-->
         <dependency>
             <groupId>com.learning</groupId>
