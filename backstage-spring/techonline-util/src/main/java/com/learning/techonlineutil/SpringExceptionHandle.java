@@ -3,8 +3,10 @@ package com.learning.techonlineutil;
 import com.learning.techonlinepojo.Response.ResponseBean;
 import com.learning.techonlinepojo.ResponseException.ExceptionEnums;
 import com.learning.techonlinepojo.ResponseException.ResponseRuntimeException;
+import org.apache.ibatis.binding.BindingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -47,13 +49,13 @@ public class SpringExceptionHandle {
      * @param e
      * @return
      */
-//    @ExceptionHandler(BindingException.class)
-//    @ResponseBody
-//    @ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
-//    public ResponseBean<String> mybatis(Exception e){
-//        logger.error("occurs error when execute method ,message {}",e.getMessage());
-//        return new ResponseBean<>(false,ExceptionEnums.MYBATIS_ERROR);
-//    }
+    @ExceptionHandler(BindingException.class)
+    @ResponseBody
+    @ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseBean<String> mybatis(Exception e){
+        logger.error("occurs error when execute method ,message {}",e.getMessage());
+        return new ResponseBean<>(false,ExceptionEnums.MYBATIS_ERROR);
+    }
 
     /**
      * 自定义异常的捕获
@@ -71,18 +73,18 @@ public class SpringExceptionHandle {
         return new ResponseBean<>(false,exception.getCode(),exception.getMsg());
     }
 
-//    /**
-//     * 数据库操作出现异常
-//     * @param e
-//     * @return
-//     */
-//    @ExceptionHandler(value={SQLException.class, DataAccessException.class})
-//    @ResponseBody
-//    @ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
-//    public ResponseBean<String> systemError(Exception e){
-//        logger.error("occurs error when execute method ,message {}",e.getMessage());
-//        return new ResponseBean<>(false, ExceptionEnums.DATABASE_ERROR);
-//    }
+    /**
+     * 数据库操作出现异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value={SQLException.class, DataAccessException.class})
+    @ResponseBody
+    @ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseBean<String> systemError(Exception e){
+        logger.error("occurs error when execute method ,message {}",e.getMessage());
+        return new ResponseBean<>(false, ExceptionEnums.DATABASE_ERROR);
+    }
 
     /**
      * 网络连接失败！
