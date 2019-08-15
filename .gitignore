@@ -40,3 +40,7 @@ yarn-error.log*
 back_sprinboot/build/
 
 backstage-spring/log/test.log
+backstage-spring/log/warn.log
+backstage-spring/log/info.log
+backstage-spring/log/error.log
+backstage-spring/log/all.log

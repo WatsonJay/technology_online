@@ -54,6 +54,7 @@ public class UserController {
                 return responseBean;
             }
         } catch (Exception e) {
+            logger.error(e.getMessage());
             return new ResponseBean(false, ExceptionEnums.SEVER_ERROR);
         }
     }

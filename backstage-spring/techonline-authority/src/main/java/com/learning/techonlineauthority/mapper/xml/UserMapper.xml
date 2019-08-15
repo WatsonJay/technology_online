@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 这里填写对应的Dao文件所在的路径 -->
+<mapper namespace="com.learning.techonlineauthority.mapper.UserMapper">
+    <!-- 填写数据库里实例User对应的表的表名 -->
+    <!-- 这里是作为一个变量使用 -->
+    <sql id="table">t_user</sql>
+
+    <!-- 根据用户名查询 -->
+    <select id="getUserNameCount" resultType="java.lang.Integer">
+        SELECT
+        count(*)
+        FROM
+        <include refid="table"/>
+        WHERE
+        user_name = #{userName}
+    </select>
+
+    <!-- 根据用户昵称查询 -->
+    <select id="getUserNickNameCount" resultType="java.lang.Integer">
+        SELECT
+        count(*)
+        FROM
+        <include refid="table"/>
+        WHERE
+        user_nick_name = #{userNickName}
+    </select>
+
+</mapper>

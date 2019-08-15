@@ -13,11 +13,20 @@ import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
  */
 public interface UserService extends IService<UserPO> {
 
-    /**
-     * @title newUser
-     * @param: [user]
-     * @updateTime 2019/8/15 17:51 
-     * @return: void
+    /*
+    增加用户
+    {user} 要新增的User实例
      */
     public void newUser(UserAddDTO userAdd);
+
+    /*
+    根据用户名查询数量
+    {userName} 要查询用户的 userName
+     */
+    int getUserNameCount(String userName);
+    /*
+    根据用户昵称查询数量
+    {userNickName} 要查询用户的 userNickName
+     */
+    int getUserNickNameCount(String userNickName);
 }
