@@ -21,7 +21,7 @@ module.exports = {
         }
       },
       '/sm.ms': {
-        target: 'https://sm.ms/api',
+        target: 'https://sm.ms/api/v2',
         changeOrigin: true,
         pathRewrite: {
           '^/sm.ms': ''

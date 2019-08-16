@@ -1,6 +1,7 @@
 package com.learning.techonlinepojo.Authority.User.pojo.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -46,6 +47,7 @@ public class UserPO {
     private String picName;
     @ApiModelProperty(value = "头像图床地址", name = "userPicUrl",dataType = "String", example = "xxx")
     private String userPicUrl;
+    @TableField(value = "pic_del_url")
     @ApiModelProperty(value = "头像删除地址", name = "userPicDelUrl",dataType = "String", example = "xxx")
     private String userPicDelUrl;
 

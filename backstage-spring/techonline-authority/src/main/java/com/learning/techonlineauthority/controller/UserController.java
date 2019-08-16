@@ -50,7 +50,7 @@ public class UserController {
                 return responseBean;
             } else {
                 userService.newUser(userAdd);
-                ResponseBean responseBean=new ResponseBean(false,ExceptionEnums.SUCCESS);
+                ResponseBean responseBean=new ResponseBean(true,ExceptionEnums.SUCCESS);
                 return responseBean;
             }
         } catch (Exception e) {
