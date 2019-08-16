@@ -23,10 +23,10 @@ public interface UserService extends IService<UserPO> {
     根据用户名查询数量
     {userName} 要查询用户的 userName
      */
-    int getUserNameCount(String userName);
+    public int getUserNameCount(String userName);
     /*
     根据用户昵称查询数量
     {userNickName} 要查询用户的 userNickName
      */
-    int getUserNickNameCount(String userNickName);
+    public int getUserNickNameCount(String userNickName);
 }

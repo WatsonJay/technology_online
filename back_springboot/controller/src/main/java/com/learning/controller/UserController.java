@@ -29,7 +29,7 @@ public class UserController {
     @ApiOperation("用户注册接口")
     @PostMapping("/registerUser")
     @ApiResponses( value = {
-            @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
+       @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
     @CrossOrigin
     public Object registerUser(@Validated User user) {
         Map<String, Object> result = new HashMap<String, Object>();

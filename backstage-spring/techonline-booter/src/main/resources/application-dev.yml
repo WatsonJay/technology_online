@@ -65,7 +65,7 @@ spring:
 #mybatis-plus配置
 mybatis-plus:
   #mapper扫描位置
-  mapper-locations: classpth*:com/learning/**/*Mapper.xml
+  mapper-locations: classpath*:com/learning/**/*Mapper.xml,classpath*:com/learning/**/*.mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
   type-aliases-package: com.learning.**.pojo,com.learning.**.pojo.dto,com.learning.**.pojo.po
   global-config:

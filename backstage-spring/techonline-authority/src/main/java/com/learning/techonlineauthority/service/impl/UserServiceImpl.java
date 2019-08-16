@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements UserService {
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     EncodeAndDecode encodeAndDecode;
 
@@ -35,6 +35,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements 
         if ( password != ""){
             user.setPassword(password);
         }
+        user.setUserStatus(true);
         userMapper.insert(user);
     }
 
