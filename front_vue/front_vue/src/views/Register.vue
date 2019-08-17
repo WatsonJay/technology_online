@@ -62,6 +62,7 @@
 
 <script>
   import Logo from '@/components/logo'
+  import { registerUser } from '@/api/api';// 导入我们的api接口
   export default {
     name: "Register",
     components:{
@@ -156,7 +157,7 @@
           this.user.picName = res.data.filename;
           this.loading=true;
           let params = Object.assign({}, this.user);
-          this.$post("/user/registerUser",params)
+          registerUser(params)
             .then((result) => {
               if (result.success) {
                 this.$message.success(result.message);
