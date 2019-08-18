@@ -24,6 +24,8 @@ public class UserDTO {
          */
     @ApiModelProperty(value = "用户ID", name = "id",dataType = "int", example = "1")
     private int id;
+    @ApiModelProperty(value = "用户Token", name = "userToken",dataType = "String", example = "AAA.BBB.CCC")
+    private String userToken;
     @ApiModelProperty(value = "用户名", name = "userName",dataType = "String", example = "admin")
     private String userName;
     @ApiModelProperty(value = "用户昵称", name = "userNickName",dataType = "String", example = "admin")
@@ -48,6 +50,12 @@ public class UserDTO {
     }
     public void setId(int id) {
         this.id = id;
+    }
+    public String getUserToken() {
+        return userToken;
+    }
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
     }
     public String getUserName() {
         return userName;

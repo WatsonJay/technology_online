@@ -2,6 +2,8 @@ package com.learning.techonlineauthority.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserAddDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.dto.UserDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.dto.UserLoginDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
 
 /**
@@ -29,4 +31,10 @@ public interface UserService extends IService<UserPO> {
     {userNickName} 要查询用户的 userNickName
      */
     public int getUserNickNameCount(String userNickName);
+
+    /*
+    根据用户昵称查询数量
+    {userNickName} 要查询用户的 userNickName
+     */
+    public UserDTO verifyLoginUser(UserLoginDTO userLogin);
 }

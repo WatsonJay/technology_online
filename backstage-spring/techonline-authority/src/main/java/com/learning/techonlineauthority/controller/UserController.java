@@ -2,6 +2,8 @@ package com.learning.techonlineauthority.controller;
 
 import com.learning.techonlineauthority.service.UserService;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserAddDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.dto.UserDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.dto.UserLoginDTO;
 import com.learning.techonlinepojo.Response.ResponseBean;
 import com.learning.techonlinepojo.ResponseException.ExceptionEnums;
 import io.swagger.annotations.Api;
@@ -33,7 +35,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @ApiOperation(value = "用户注册接口",notes = "用户注册接口")
     @PostMapping(value = "/registerUser")
     @ApiResponses( value = {
@@ -56,6 +57,25 @@ public class UserController {
         } catch (Exception e) {
             logger.error(e.getMessage());
             return new ResponseBean(false, ExceptionEnums.SEVER_ERROR);
+        }
+    }
+
+    @ApiOperation("用户登陆接口")
+    @PostMapping("/Login")
+    @ApiResponses( value = {
+            @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
+    @CrossOrigin
+    public Object Login(@RequestBody @Validated UserLoginDTO userLogin) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        try {
+            UserDTO verifyedUser = userService.verifyLoginUser(userLogin);
+            if (verifyedUser == null){
+                return new ResponseBean<>(false, ExceptionEnums.USER_FAIL);
+            }else {
+                return new ResponseBean<>(true,verifyedUser,ExceptionEnums.SUCCESS);
+            }
+        } catch (Exception e) {
+            return new ResponseBean<>(false, ExceptionEnums.SEVER_ERROR);
         }
     }
 }

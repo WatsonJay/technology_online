@@ -33,22 +33,23 @@ public class UserAddDTO {
     @NotNull(message = "用户名不能为空")
     @Length(min = 3, max = 15, message = "姓名必须在3到15位之间")
     @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "用户名存在非法的字符")
-    @ApiModelProperty(value = "用户名", name = "userName",dataType = "String", example = "admin")
+    @ApiModelProperty(value = "用户名", name = "userName",dataType = "String", example = "admin", required = true)
     private String userName;
     @NotNull(message = "用户昵称不能为空")
     @Length(min = 3, max = 30, message = "姓名必须在3到30位之间")
     @Pattern(regexp = "^[\u4e00-\u9fa5a-z0-9_]+$", message = "用户昵称存在非法的字符")
-    @ApiModelProperty(value = "用户昵称", name = "userNickName",dataType = "String", example = "admin")
+    @ApiModelProperty(value = "用户昵称", name = "userNickName",dataType = "String", example = "admin", required = true)
     private String userNickName;
     @NotNull(message = "密码不能为空")
-    @ApiModelProperty(value = "密码", name = "password",dataType = "String", example = "123456")
+    @ApiModelProperty(value = "密码", name = "password",dataType = "String", example = "123456", required = true)
     private String password;
     @NotNull(message = "邮箱不能为空")
     @Email(message = "邮箱格式不正确")
-    @ApiModelProperty(value = "邮箱", name = "userMail",dataType = "String", example = "1@qq.com")
+    @ApiModelProperty(value = "邮箱", name = "userMail",dataType = "String", example = "1@qq.com", required = true)
     private String userMail;
+    @NotNull(message = "手机号不能为空")
     @Pattern(regexp = "^1(3|4|5|6|7|8|9)\\d{9}$", message = "请输入正确的手机号")
-    @ApiModelProperty(value = "手机号", name = "userPhone",dataType = "String", example = "136000000")
+    @ApiModelProperty(value = "手机号", name = "userPhone",dataType = "String", example = "136000000", required = true)
     private String userPhone;
     @ApiModelProperty(value = "用户状态", name = "userStatus",dataType = "Boolean", example = "true")
     private boolean userStatus;

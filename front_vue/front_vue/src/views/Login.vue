@@ -66,8 +66,10 @@
               .then((result) => {
                 if (result.success) {
                   this.$message.success(result.message);
-                  sessionStorage.setItem('access-token', result.data);
+                  sessionStorage.setItem('access-token', result.data.userToken);
                   sessionStorage.setItem('userName', this.user.userName);
+                  sessionStorage.setItem('userNickName', result.data.userNickName);
+                  sessionStorage.setItem('userAvatorUrl', result.data.userPicUrl);
                   this.$router.push({name:'Home'});
                 }else{
                   this.$message.error(result.message);

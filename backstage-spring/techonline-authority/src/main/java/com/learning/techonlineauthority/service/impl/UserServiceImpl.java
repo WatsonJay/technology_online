@@ -1,15 +1,21 @@
 package com.learning.techonlineauthority.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.learning.techonlineauthority.mapper.UserMapper;
 import com.learning.techonlineauthority.service.UserService;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserAddDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.dto.UserLoginDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
+import com.learning.techonlineshirojwt.JwtToken;
 import com.learning.techonlineutil.EncodeAndDecode;
 import com.learning.techonlineutil.EntityObjectConverter;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Wrapper;
 
 /**
  * @author admin
@@ -39,20 +45,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements 
         userMapper.insert(user);
     }
 
-    /*
-    根据用户名查询数量
-    {userName} 要查询用户的 userName
-     */
     @Override
     public int getUserNameCount(String userName){
         return userMapper.getUserNameCount(userName);
     };
-    /*
-    根据用户昵称查询数量
-    {userNickName} 要查询用户的 userNickName
-     */
+
     @Override
     public int getUserNickNameCount(String userNickName){
         return userMapper.getUserNickNameCount(userNickName);
+    }
+
+    @Override
+    public UserDTO verifyLoginUser(UserLoginDTO userLogin) {
+        QueryWrapper<UserPO> condition = new QueryWrapper<>();
+        String password = encodeAndDecode.AESEncode(userLogin.getPassword());
+        condition.eq("user_name",userLogin.getUserName()).eq("password",password);
+        UserPO user = userMapper.selectOne(condition);
+        UserDTO loginedUserMsg = EntityObjectConverter.getObject(user, UserDTO.class);
+        String userToken = JwtToken.sign(userLogin.getUserName(),userLogin.getPassword());
+        loginedUserMsg.setUserToken(userToken);
+        return loginedUserMsg;
     };
+
 }

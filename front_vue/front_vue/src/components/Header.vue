@@ -24,15 +24,15 @@
         </div>
         <!-- 用户头像 -->
         <div class="user-avator">
-            <el-avatar :src="avater_pic"></el-avatar>
+            <el-avatar :src="avator_pic"></el-avatar>
         </div>
         <!-- 用户名下拉菜单 -->
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
-            {{username}}<i class="el-icon-arrow-down el-icon--right"></i>
+            {{userNickName}}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="2">狮子头</el-dropdown-item>
+            <el-dropdown-item command="2">个人中心</el-dropdown-item>
             <el-dropdown-item divided command="loginOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -50,7 +50,8 @@
       Logo,
     },
     created(){
-      this.username=sessionStorage.getItem("userName");
+      this.userNickName = sessionStorage.getItem("userNickName");
+      this.avator_pic = sessionStorage.getItem("userAvatorUrl");
     },
     data(){
       return{
@@ -58,8 +59,8 @@
         readAll:false,
         collapse: false,
         message: '',
-        username:'',
-        avater_pic:require('@/assets/img/user.png'),
+        userNickName:'',
+        avator_pic:require('@/assets/img/user.png'),
       }
     },
     methods:{
@@ -71,6 +72,8 @@
         if (command == 'loginOut'){
           sessionStorage.removeItem('access-token');
           sessionStorage.removeItem('userName');
+          sessionStorage.removeItem('userNickName');
+          sessionStorage.removeItem('userAvatorUrl');
           this.$router.push({name:'Login'})
         }
       },
