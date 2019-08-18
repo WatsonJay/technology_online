@@ -1,7 +1,7 @@
 package com.learning.techonlineauthority.controller;
 
 import com.learning.techonlineauthority.service.UserService;
-import com.learning.techonlinepojo.Authority.User.pojo.dto.UserAddDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.dto.UserModifDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserLoginDTO;
 import com.learning.techonlinepojo.Response.ResponseBean;
@@ -40,7 +40,7 @@ public class UserController {
     @ApiResponses( value = {
             @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
     @CrossOrigin
-    public @ResponseBody Object registerUser(@RequestBody @Validated UserAddDTO userAdd) {
+    public @ResponseBody Object registerUser(@RequestBody @Validated UserModifDTO userAdd) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
             if (userService.getUserNameCount(userAdd.getUserName()) != 0) {

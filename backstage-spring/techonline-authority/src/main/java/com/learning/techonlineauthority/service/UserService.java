@@ -1,7 +1,7 @@
 package com.learning.techonlineauthority.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.learning.techonlinepojo.Authority.User.pojo.dto.UserAddDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.dto.UserModifDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserLoginDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
@@ -19,7 +19,7 @@ public interface UserService extends IService<UserPO> {
     增加用户
     {user} 要新增的User实例
      */
-    public void newUser(UserAddDTO userAdd);
+    public void newUser(UserModifDTO userAdd);
 
     /*
     根据用户名查询数量

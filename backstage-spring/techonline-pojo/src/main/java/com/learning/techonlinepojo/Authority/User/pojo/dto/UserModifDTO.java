@@ -12,12 +12,12 @@ import javax.validation.constraints.Pattern;
 /**
  * @author admin
  * @version 1.0.0
- * @ClassName UserAddDTO.java
+ * @ClassName UserModifDTO.java
  * @Description TODO
  * @createTime 2019年08月15日 16:09:00
  */
 @ApiModel("用户新增DTO")
-public class UserAddDTO {
+public class UserModifDTO {
     /*
             {id} 自增主键
             {userName} 用户姓名

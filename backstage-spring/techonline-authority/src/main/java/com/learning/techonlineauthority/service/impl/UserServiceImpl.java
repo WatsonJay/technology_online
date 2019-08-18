@@ -4,18 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.learning.techonlineauthority.mapper.UserMapper;
 import com.learning.techonlineauthority.service.UserService;
-import com.learning.techonlinepojo.Authority.User.pojo.dto.UserAddDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.dto.UserModifDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserLoginDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
 import com.learning.techonlineshirojwt.JwtToken;
 import com.learning.techonlineutil.EncodeAndDecode;
 import com.learning.techonlineutil.EntityObjectConverter;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Wrapper;
 
 /**
  * @author admin
@@ -34,7 +31,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements 
     EncodeAndDecode encodeAndDecode;
 
     @Override
-    public void newUser(UserAddDTO userAdd){
+    public void newUser(UserModifDTO userAdd){
         UserPO user = EntityObjectConverter.getObject(userAdd, UserPO.class);
         UserDTO checkUser = EntityObjectConverter.getObject(userAdd, UserDTO.class);
         String password = encodeAndDecode.AESEncode(checkUser.getPassword());
