@@ -49,7 +49,7 @@ public class UserModifDTO {
     private String userMail;
     @NotNull(message = "手机号不能为空")
     @Pattern(regexp = "^1(3|4|5|6|7|8|9)\\d{9}$", message = "请输入正确的手机号")
-    @ApiModelProperty(value = "手机号", name = "userPhone",dataType = "String", example = "136000000", required = true)
+    @ApiModelProperty(value = "手机号", name = "userPhone",dataType = "String", example = "13600000000", required = true)
     private String userPhone;
     @ApiModelProperty(value = "用户状态", name = "userStatus",dataType = "Boolean", example = "true")
     private boolean userStatus;
