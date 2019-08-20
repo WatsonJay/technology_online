@@ -5,6 +5,8 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -16,9 +18,13 @@ import java.util.Date;
  * @createTime 2019年08月18日 15:57:00
  */
 public class JwtToken {
-    private static final long EXPIRE_TIME = 5 * 60 * 1000;
+    public static Logger logger= LoggerFactory.getLogger(JwtToken.class);
     /**
-     * 生成签名,5min后过期
+     * 失效时间
+     */
+    private static final long EXPIRE_TIME = 24 * 60 * 60 * 1000;
+    /**
+     * 生成签名
      *
      * @param username 用户名
      * @param password   用户的密码
@@ -52,6 +58,7 @@ public class JwtToken {
             DecodedJWT jwt = verifier.verify(token);
             return true;
         } catch (Exception exception) {
+            logger.error("JWT存在问题，验证失败");
             return false;
         }
     }
@@ -65,6 +72,7 @@ public class JwtToken {
             DecodedJWT jwt = JWT.decode(token);
             return jwt.getClaim("username").asString();
         } catch (JWTDecodeException e) {
+            logger.error("JWT存在问题，提取信息失败");
             return null;
         }
     }

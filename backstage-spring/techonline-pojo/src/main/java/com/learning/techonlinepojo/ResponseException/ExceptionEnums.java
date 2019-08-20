@@ -25,7 +25,8 @@ public enum ExceptionEnums {
     USER_FOBBIDEN("20003", "用户已被禁用"),
     USER_NAME_EXIST("20004", "用户名已存在"),
     USER_NICKNAME_EXIST("20005", "用户昵称已存在"),
-    USER_TOKENE_RROR("20006", "用户token异常"),
+    USER_TOKENE_ERROR("20006", "用户token失效,请重新登陆"),
+    USER__PERMISSION_INSUFFICIENT("20007", "用户无访问接口权限"),
 
     /* 业务错误：30001-39999 */
     METHOD_NOT_ALLOWED("30001", "某业务出现问题"),

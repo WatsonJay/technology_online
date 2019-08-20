@@ -4,6 +4,7 @@ import com.learning.techonlinepojo.Response.ResponseBean;
 import com.learning.techonlinepojo.ResponseException.ExceptionEnums;
 import com.learning.techonlinepojo.ResponseException.ResponseRuntimeException;
 import org.apache.ibatis.binding.BindingException;
+import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -111,7 +112,22 @@ public class SpringExceptionHandle {
         logger.error("occurs error when execute method ,message {}",e.getMessage());
         return new ResponseBean<>(false, ExceptionEnums.PARAM_VALID_FAIL);
     }
-
+    /*
+     * @title connect
+     * @description 处理Shiro权限拦截异常
+     * @author jaywatson 
+     * @param: [e]
+     * @updateTime 2019/8/20 10:22 
+     * @return: com.learning.techonlinepojo.Response.ResponseBean<java.lang.String>
+     * @throws
+     */
+    @ExceptionHandler(value={AuthorizationException.class})
+    @ResponseBody
+    @ResponseStatus(value=HttpStatus.FORBIDDEN)
+    public ResponseBean<String> connect(AuthorizationException e){
+        logger.error("occurs error when execute method ,message {}",e.getMessage());
+        return new ResponseBean<>(false, ExceptionEnums.USER__PERMISSION_INSUFFICIENT);
+    }
     /**
      * 通用异常封装
      * @param e

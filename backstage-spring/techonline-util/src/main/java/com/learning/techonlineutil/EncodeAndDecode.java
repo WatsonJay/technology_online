@@ -1,5 +1,7 @@
 package com.learning.techonlineutil;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -19,6 +21,7 @@ import java.security.SecureRandom;
  * @createTime 2019年07月28日 23:39:00
  */
 public class EncodeAndDecode {
+    public static Logger logger= LoggerFactory.getLogger(EncodeAndDecode.class);
     /*
      * 加密
      * 1.构造密钥生成器
@@ -57,17 +60,17 @@ public class EncodeAndDecode {
             //11.将字符串返回
             return AES_encode;
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (InvalidKeyException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (BadPaddingException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
 
         //如果有错就返加nulll
@@ -108,17 +111,17 @@ public class EncodeAndDecode {
             return AES_decode;
 
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (InvalidKeyException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (BadPaddingException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
 
         //如果有错就返加nulll

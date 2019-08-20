@@ -39,7 +39,6 @@ public class UserController {
     @PostMapping(value = "/registerUser")
     @ApiResponses( value = {
             @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
-    @CrossOrigin
     public @ResponseBody Object registerUser(@RequestBody @Validated UserModifDTO userAdd) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
@@ -64,7 +63,6 @@ public class UserController {
     @PostMapping("/Login")
     @ApiResponses( value = {
             @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
-    @CrossOrigin
     public Object Login(@RequestBody @Validated UserLoginDTO userLogin) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
