@@ -21,7 +21,7 @@ public class UserQueryDTO {
     @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "用户名存在非法的字符")
     private String userName;
     @ApiModelProperty(value = "用户状态", name = "userStatus",dataType = "Boolean", example = "true")
-    private boolean userStatus;
+    private int userStatus;
 
     public int getId() {
         return id;
@@ -39,11 +39,11 @@ public class UserQueryDTO {
         this.userName = userName;
     }
 
-    public boolean isUserStatus() {
+    public int isUserStatus() {
         return userStatus;
     }
 
-    public void setUserStatus(boolean userStatus) {
+    public void setUserStatus(int userStatus) {
         this.userStatus = userStatus;
     }
 }

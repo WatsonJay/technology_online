@@ -37,7 +37,7 @@ public class UserDTO {
     @ApiModelProperty(value = "手机号", name = "userPhone",dataType = "String", example = "136000000")
     private String userPhone;
     @ApiModelProperty(value = "用户状态", name = "userStatus",dataType = "Boolean", example = "true")
-    private boolean userStatus;
+    private int userStatus;
     @ApiModelProperty(value = "头像名称", name = "picName",dataType = "String", example = "user")
     private String picName;
     @ApiModelProperty(value = "头像图床地址", name = "userPicUrl",dataType = "String", example = "xxx")
@@ -87,10 +87,10 @@ public class UserDTO {
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
-    public boolean isUserStatus() {
+    public int isUserStatus() {
         return userStatus;
     }
-    public void setUserStatus(boolean userStatus) {
+    public void setUserStatus(int userStatus) {
         this.userStatus = userStatus;
     }
     public String getPicName() {

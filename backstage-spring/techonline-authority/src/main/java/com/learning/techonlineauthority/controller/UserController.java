@@ -89,6 +89,11 @@ public class UserController {
             @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
     @CrossOrigin
     public ResponseBean<PageInfo<UserPO>> querUserList(@RequestBody @Validated QueryParam<UserQueryDTO> param){
-        PageInfo<UserPO> UserInfo = userService.queryUserList(param.getParam(), param.getPageNum(), param.getPageSize());
+        try {
+            PageInfo<UserPO> UserInfo = userService.queryUserList(param.getParam(), param.getPageNum(), param.getPageSize());
+            return new ResponseBean<>(true,UserInfo);
+        } catch (Exception e) {
+            return new ResponseBean<>(false, ExceptionEnums.SEVER_ERROR);
+        }
     }
 }

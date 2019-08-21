@@ -43,7 +43,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements 
         if ( password != ""){
             user.setPassword(password);
         }
-        user.setUserStatus(true);
+        user.setUserStatus(1);
         userMapper.insert(user);
     }
 
@@ -72,7 +72,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements 
     @Override
     public PageInfo<UserPO> queryUserList(UserQueryDTO userQuery, int perPage, int perSize) {
         PageHelper.startPage(perPage, perSize);
-        List<UserPO> userList = userMapper.selectList();
-
+        QueryWrapper<UserPO> condition = new QueryWrapper<>();
+        condition.like("user_name",userQuery.getUserName());
+        //condition.eq("user_status",userQuery.isUserStatus());
+        List<UserPO> userList = userMapper.selectList(condition);
+        PageInfo<UserPO> page = new PageInfo<UserPO>(userList);
+        return page;
     }
 }
