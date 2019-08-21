@@ -16,13 +16,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class shiroConfig {
 
-    @Bean("shiroFilter")
-    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
-
-    }
-
-    @Bean("SecurityManager")
-    public SecurityManager securityManager(){
-
-    }
+//    @Bean("shiroFilter")
+//    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
+//
+//    }
+//
+//    @Bean("SecurityManager")
+//    public SecurityManager securityManager(){
+//
+//    }
 }

@@ -1,9 +1,13 @@
 package com.learning.techonlineauthority.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.learning.techonlineauthority.service.UserService;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserModifDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserLoginDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.dto.UserQueryDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
+import com.learning.techonlinepojo.Request.QueryParam;
 import com.learning.techonlinepojo.Response.ResponseBean;
 import com.learning.techonlinepojo.ResponseException.ExceptionEnums;
 import io.swagger.annotations.Api;
@@ -39,6 +43,7 @@ public class UserController {
     @PostMapping(value = "/registerUser")
     @ApiResponses( value = {
             @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
+    @CrossOrigin
     public @ResponseBody Object registerUser(@RequestBody @Validated UserModifDTO userAdd) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
@@ -63,6 +68,7 @@ public class UserController {
     @PostMapping("/Login")
     @ApiResponses( value = {
             @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
+    @CrossOrigin
     public Object Login(@RequestBody @Validated UserLoginDTO userLogin) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
@@ -75,5 +81,14 @@ public class UserController {
         } catch (Exception e) {
             return new ResponseBean<>(false, ExceptionEnums.SEVER_ERROR);
         }
+    }
+
+    @ApiOperation(value = "用户查询接口",notes = "用户查询接口")
+    @PostMapping(value = "/queryUserList")
+    @ApiResponses( value = {
+            @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
+    @CrossOrigin
+    public ResponseBean<PageInfo<UserPO>> querUserList(@RequestBody @Validated QueryParam<UserQueryDTO> param){
+        PageInfo<UserPO> UserInfo = userService.queryUserList(param.getParam(), param.getPageNum(), param.getPageSize());
     }
 }

@@ -1,12 +1,15 @@
 package com.learning.techonlineshirojwt;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.learning.techonlineauthority.service.UserService;
-import com.learning.techonlinepojo.Authority.User.pojo.dto.UserDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
 import com.learning.techonlinepojo.JwtToken.JwtTokenBean;
-import org.apache.shiro.authc.*;
+import com.learning.techonlineutil.JwtToken;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -36,7 +39,7 @@ public class CustomRealm extends AuthorizingRealm {
     }
 
     @Override
-    protected AuthenticationInfo doGetAuthorizationInfo(PrincipalCollection principals){
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals){
         logger.info("doGetAuthorizationInfo+" + principals.toString());
         QueryWrapper<UserPO> queryWrapper = new QueryWrapper<>();
         String username = JwtToken.getUsername(principals.toString());
@@ -47,7 +50,7 @@ public class CustomRealm extends AuthorizingRealm {
     }
 
     @Override
-    protected AuthenticationInfo doGetAuthorizationInfo(AuthenticationToken authcToken) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
         String token = (String) authcToken.getCredentials();
         // 解密获得username，用于和数据库进行对比
         String username = JwtToken.getUsername(token);
@@ -61,15 +64,15 @@ public class CustomRealm extends AuthorizingRealm {
         if (user != null) {
             // 判断是否禁用
             if (!user.isUserStatus()) {
-                throw new DisabledAccountException("901");
+                throw new AuthenticationException("901");
             }
             // 密码验证
             if (!JwtToken.verify(token, username, user.getPassword())) {
-                throw new UnknownAccountException("900");
+                throw new AuthenticationException("900");
             }
             return new SimpleAuthenticationInfo(token, token, "realm");
         } else {
-            throw new UnknownAccountException("900");
+            throw new AuthenticationException("900");
         }
     }
 }

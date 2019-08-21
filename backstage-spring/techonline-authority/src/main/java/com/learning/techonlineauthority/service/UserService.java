@@ -1,9 +1,11 @@
 package com.learning.techonlineauthority.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.github.pagehelper.PageInfo;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserModifDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserLoginDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.dto.UserQueryDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
 
 /**
@@ -37,4 +39,10 @@ public interface UserService extends IService<UserPO> {
     {userNickName} 要查询用户的 userNickName
      */
     public UserDTO verifyLoginUser(UserLoginDTO userLogin);
+
+    /*
+    根据用户名,用户状态，用户ID查询用户列表
+    {userNickName} 要查询用户的 userNickName
+     */
+    public PageInfo<UserPO> queryUserList(UserQueryDTO userQuery, int perPage, int perSize);
 }

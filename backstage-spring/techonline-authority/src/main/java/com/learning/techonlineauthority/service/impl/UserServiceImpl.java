@@ -2,17 +2,22 @@ package com.learning.techonlineauthority.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.learning.techonlineauthority.mapper.UserMapper;
 import com.learning.techonlineauthority.service.UserService;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserModifDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserLoginDTO;
+import com.learning.techonlinepojo.Authority.User.pojo.dto.UserQueryDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
-import com.learning.techonlineshirojwt.JwtToken;
+import com.learning.techonlineutil.JwtToken;
 import com.learning.techonlineutil.EncodeAndDecode;
 import com.learning.techonlineutil.EntityObjectConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author admin
@@ -62,6 +67,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements 
         String userToken = JwtToken.sign(userLogin.getUserName(),userLogin.getPassword());
         loginedUserMsg.setUserToken(userToken);
         return loginedUserMsg;
-    };
+    }
 
+    @Override
+    public PageInfo<UserPO> queryUserList(UserQueryDTO userQuery, int perPage, int perSize) {
+        PageHelper.startPage(perPage, perSize);
+        List<UserPO> userList = userMapper.selectList();
+
+    }
 }
