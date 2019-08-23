@@ -9,7 +9,7 @@ export const constantRouterMap = [
   {
     path: '/login',
     name: 'Login',
-    component: resolve => require(['@/views/Login.vue+'], resolve)
+    component: resolve => require(['@/views/Login.vue'], resolve)
   },
   {
     path: '/register',
@@ -23,7 +23,8 @@ export const constantRouterMap = [
     component: resolve => require(['@/views/Home.vue'], resolve),
     meta: { title: '基础平台' },
     children: [{ path: 'dashboard', component: resolve => require(['@/views/NoFound.vue'], resolve), meta: { title: '系统首页' }},
-                { path: 'dashboard1', component: resolve => require(['@/views/NoFound.vue'], resolve), meta: { title: 'test' }}]
+                { path: 'dashboard1', component: resolve => require(['@/views/NoFound.vue'], resolve), meta: { title: 'test' }},
+                { path: 'userManage', component: resolve => require(['@/views/UserManage.vue'], resolve), meta: { title: '用户管理' }}]
   },
 ]
 export const asyncRouterMap = [

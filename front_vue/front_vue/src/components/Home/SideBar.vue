@@ -32,7 +32,7 @@
 </template>
 
 <script>
-  import { EventBus } from '../assets/js/bus';
+  import { EventBus } from '../../assets/js/bus';
   export default {
     name: "SideBar",
     data() {
@@ -130,9 +130,23 @@
           }
           ,
           {
-            icon: 'el-icon-lx-redpacket_fill',
-            index: '/donate',
-            title: '支持作者'
+            icon: 'el-icon-lx icon-kongzhizhongxin',
+            index: '8',
+            title: '权限管理',
+            subs: [
+              {
+                index: 'userManage',
+                title: '用户管理'
+              },
+              {
+                index: '',
+                title: '角色管理'
+              },
+              {
+                index: '',
+                title: '菜单管理'
+              },
+            ]
           }
         ]
       }

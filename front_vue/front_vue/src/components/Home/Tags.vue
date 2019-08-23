@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import { EventBus } from '../assets/js/bus';
+  import { EventBus } from '../../assets/js/bus';
   export default {
     name: "Tags",
     data() {

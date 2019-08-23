@@ -16,9 +16,9 @@
 </template>
 
 <script>
-  import vHeader from "@/components/Header.vue"
-  import vSideBar from '@/components/SideBar.vue';
-  import vTags from '@/components/Tags.vue';
+  import vHeader from "@/components/Home/Header.vue"
+  import vSideBar from '@/components/Home/SideBar.vue';
+  import vTags from '@/components/Home/Tags.vue';
   import { EventBus } from '../assets/js/bus';
   export default {
     name: "Home",

@@ -1,7 +1,7 @@
 <template>
   <div class="home-header">
     <div class="collapse-btn" @click="collapseChange">
-      <i class="iconfont iconall"></i>
+      <i class="el-icon-lx icon-yingyongAPP"></i>
     </div>
     <div class="header-logo">技术支撑管理系统</div>
     <div class="header-right">
@@ -43,7 +43,7 @@
 
 <script>
   import Logo from '@/components/logo'
-  import { EventBus } from '../assets/js/bus';
+  import { EventBus } from '../../assets/js/bus';
   export default {
     name: "Header",
     components:{
