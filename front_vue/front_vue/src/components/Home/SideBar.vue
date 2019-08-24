@@ -131,11 +131,11 @@
           ,
           {
             icon: 'el-icon-lx icon-kongzhizhongxin',
-            index: '8',
+            index: 'permission',
             title: '权限管理',
             subs: [
               {
-                index: 'userManage',
+                index: 'permission/userManage',
                 title: '用户管理'
               },
               {

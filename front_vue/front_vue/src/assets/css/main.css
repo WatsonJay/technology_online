@@ -46,3 +46,7 @@ a {
 .content-collapse {
   left: 65px;
 }
+
+.crumbs {
+  margin: 10px 0;
+}

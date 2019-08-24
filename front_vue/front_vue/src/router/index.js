@@ -19,13 +19,14 @@ export const constantRouterMap = [
   {
     path: '/',
     name: 'Home',
-    redirect: '/dashboard',
     component: resolve => require(['@/views/Home.vue'], resolve),
-    meta: { title: '基础平台' },
-    children: [{ path: 'dashboard', component: resolve => require(['@/views/NoFound.vue'], resolve), meta: { title: '系统首页' }},
-                { path: 'dashboard1', component: resolve => require(['@/views/NoFound.vue'], resolve), meta: { title: 'test' }},
-                { path: 'userManage', component: resolve => require(['@/views/UserManage.vue'], resolve), meta: { title: '用户管理' }}]
+    meta: { title: '系统首页' },
+    children: []
   },
+  { path: '/permission', component: resolve => require(['@/views/Home.vue'], resolve), meta: { title: 'test' },redirect: '/permission/userManage',children: [
+      { path: 'userManage', component: resolve => require(['@/views/UserManage.vue'], resolve), meta: { title: '用户管理' }}
+    ]},
+
 ]
 export const asyncRouterMap = [
   {

@@ -3,7 +3,7 @@ import qs from 'qs'
 
 axios.defaults.timeout = 5000;                        //响应时间
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';        //配置请求头
-axios.defaults.baseURL = 'http://localhost:14520';   //配置接口地址
+axios.defaults.baseURL = process.env.BASE_API;   //配置接口地址
 
 //POST传参序列化(添加请求拦截器)
 axios.interceptors.request.use((config) => {
