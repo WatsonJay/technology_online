@@ -27,7 +27,7 @@
 
 <script>
   import Logo from '@/components/logo'
-  import { login } from '@/api/api';// 导入我们的api接口
+  import { login } from '@/api/user/api';// 导入我们的api接口
   export default {
     name: "Login",
     components:{

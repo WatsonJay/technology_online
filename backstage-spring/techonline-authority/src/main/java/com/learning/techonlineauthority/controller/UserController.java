@@ -65,11 +65,11 @@ public class UserController {
     }
 
     @ApiOperation("用户登陆接口")
-    @PostMapping("/Login")
+    @PostMapping("/login")
     @ApiResponses( value = {
             @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
     @CrossOrigin
-    public Object Login(@RequestBody @Validated UserLoginDTO userLogin) {
+    public Object login(@RequestBody @Validated UserLoginDTO userLogin) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
             UserDTO verifyedUser = userService.verifyLoginUser(userLogin);

@@ -11,6 +11,8 @@ axios.interceptors.request.use((config) => {
   if(config.method  === 'post'){
     config.data = JSON.stringify(config.data);
   }
+  const token = sessionStorage.getItem("access-token");
+  token && (config.headers.Authorization = token);
   return config;
 },(error) =>{
   console.log('错误的传参')

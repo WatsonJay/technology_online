@@ -62,7 +62,7 @@
 
 <script>
   import Logo from '@/components/logo'
-  import { registerUser } from '@/api/api';// 导入我们的api接口
+  import { registerUser } from '@/api/user/api';// 导入我们的api接口
   export default {
     name: "Register",
     components:{
