@@ -7,7 +7,7 @@ export default {
   init(){
     var mock = new MockAdapter(axios)
     mock.onPost('/menu/getMenu').reply(200, {
-      success:true, code: 1001, msg: '请求成功', menus
+      success:true, code: 1001, msg: '请求成功', data: menus
     })
   }
 }
