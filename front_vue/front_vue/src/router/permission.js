@@ -6,7 +6,11 @@ const whiteList = []
 
 //对每次访问之前都要先看是否已经登录
 router.beforeEach((to,from,next)=>{
-  gotoRouter(to, next);
+  if (store.getters.routerGetted){
+    next()
+  }else{
+    gotoRouter(to, next);
+  }
   // if(to.path== '/login' || to.path== '/register'){
   //   sessionStorage.removeItem('access-token');
   //   sessionStorage.removeItem('userName');
@@ -32,6 +36,7 @@ function gotoRouter(to, next) {
   .then(asyncRouter => {
     router.addRoutes(asyncRouter) // vue-router提供的addRouter方法进行路由拼接
     store.dispatch('setRouterList', asyncRouter) // 存储到vuex
+    store.dispatch('set_routerGetted', true )//修改路由获取状态
     next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
   })
 }
