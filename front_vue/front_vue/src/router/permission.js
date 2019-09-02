@@ -1,4 +1,5 @@
 import router from '../router'
+// 引入store
 import store from '../store'
 import {getMenu} from '../api/menu/api'
 
@@ -6,6 +7,7 @@ const whiteList = []
 
 //对每次访问之前都要先看是否已经登录
 router.beforeEach((to,from,next)=>{
+  debugger
   if (store.getters.routerGetted){
     next()
   }else{
@@ -35,8 +37,9 @@ function gotoRouter(to, next) {
   })
   .then(asyncRouter => {
     router.addRoutes(asyncRouter) // vue-router提供的addRouter方法进行路由拼接
-    store.dispatch('setRouterList', asyncRouter) // 存储到vuex
-    store.dispatch('set_routerGetted', true )//修改路由获取状态
+    debugger
+    store.commit('set_routerList', asyncRouter) // 存储到vuex
+    store.commit('set_routerGetted', true)//修改路由获取状态
     next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
   })
 }
