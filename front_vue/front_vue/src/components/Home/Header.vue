@@ -105,9 +105,17 @@
         this.fullscreen = !this.fullscreen;
       }
     },
-    mounted: function(){
-      if(document.body.clientWidth < 1500){
+    mounted(){
+      var _this = this;
+      if (document.body.clientWidth < 1500){
         this.collapseChange();
+      };
+      window.onresize = function() {
+        if (document.body.clientWidth < 1500) {
+          if (_this.collapse==false){
+            _this.collapseChange();
+          }
+        }
       }
     },
   }
