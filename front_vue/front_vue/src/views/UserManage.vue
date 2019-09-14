@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import crumbs from "@/components/crumbs.vue"
+  import crumbs from "@/components/Crumbs.vue"
   export default {
     name: "UserManage",
     components:{
