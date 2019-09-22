@@ -14,19 +14,29 @@ import Mock from './mock'
 import store from './store'
 //前端拼接后台权限
 import  '@/router/permission'
+//vue-i18n 多语言版本处理
+import  VueI18n from 'vue-i18n'
 //启动mock
 if(process.env.MOCK_NEEDED){
   Mock.init()
 }
 
 Vue.config.productionTip = false
-
+Vue.use(VueI18n)
 Vue.use(ElementUI);
 //Vue.use(VueResource);
+const  i18n = new VueI18n({
+  locale: 'zh',          //默认语言
+  message: {
+    'zh': require('./lang/zh'),
+    'en': require('./lang/en')
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  i18n,
   router,
   store,
   components: { App },
