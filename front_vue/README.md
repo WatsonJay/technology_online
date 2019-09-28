@@ -1,9 +1,5 @@
 # 技术支撑平台前端
 
-![banner]()
-
-![badge]()
-![badge]()
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 > 技术支撑平台前端代码.
