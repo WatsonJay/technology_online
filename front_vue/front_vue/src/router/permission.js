@@ -1,7 +1,7 @@
 import router from '../router'
 // 引入store
 import store from '../store'
-import {getMenu} from '../api/menu/api'
+import {getMenu} from '../api/home/api'
 
 const whiteList = []
 

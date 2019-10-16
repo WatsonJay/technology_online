@@ -62,7 +62,7 @@
 
 <script>
   import Logo from '@/components/logo'
-  import { registerUser } from '@/api/user/api';// 导入我们的api接口
+  import { registerUser } from '@/api/main/api';// 导入我们的api接口
   export default {
     name: "Register",
     components:{
@@ -202,7 +202,7 @@
     width: 100%;
     height: 100%;
     position:relative;
-    background-image: url(../assets/img/bg.png);
+    background-image: url(../../assets/img/bg.png);
     background-size: 100%;
   }
   .ms-register{

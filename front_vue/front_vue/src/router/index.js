@@ -9,29 +9,25 @@ export const constantRouterMap = [
   {
     path: '/login',
     name: 'Login',
-    component: resolve => require(['@/views/Login.vue'], resolve)
+    component: resolve => require(['@/views/main/Login.vue'], resolve)
   },
   {
     path: '/register',
     name: 'Register',
-    component: resolve => require(['@/views/Register.vue'], resolve)
+    component: resolve => require(['@/views/main/Register.vue'], resolve)
   },
   {
     path: '/',
     name: 'Home',
-    component: resolve => require(['@/views/Home.vue'], resolve),
+    component: resolve => require(['@/views/home/index.vue'], resolve),
     meta: { title: '系统首页' },
     children: []
   },
-  { path: '/permission', component: resolve => require(['@/views/Home.vue'], resolve), meta: { title: 'test' },redirect: '/permission/userManage',children: [
-      { path: 'userManage', component: resolve => require(['@/views/UserManage.vue'], resolve), meta: { title: '用户管理' }}
-    ]},
-
 ]
 export const asyncRouterMap = [
   {
     path:'*',
-    component : resolve => require(['@/views/NoFound.vue'], resolve)
+    component : resolve => require(['@/views/errorPage/404.vue'], resolve)
   },
 ]
 export default new Router({

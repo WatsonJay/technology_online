@@ -27,7 +27,7 @@
 
 <script>
   import Logo from '@/components/logo'
-  import { login } from '@/api/user/api';// 导入我们的api接口
+  import { login } from '@/api/main/api';// 导入我们的api接口
   export default {
     name: "Login",
     components:{
@@ -35,7 +35,7 @@
     },
     data(){
       return{
-        url:require("../assets/logo.png"),
+        url:require("../../assets/logo.png"),
         labelPosition: 'left',
         loading: false,
         user: {
@@ -92,7 +92,7 @@
     width: 100%;
     height: 100%;
     position:relative;
-    background-image: url(../assets/img/bg.png);
+    background-image: url(../../assets/img/bg.png);
     background-size: 100%;
   }
   .ms-login{

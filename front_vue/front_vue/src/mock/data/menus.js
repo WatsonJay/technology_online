@@ -5,7 +5,7 @@ let menus = [] // 用于存放菜单数据的数组
 for (let i = 0; i < 4; i++) {
   let children = [];
   for (let i = 0; i < 4; i++) {
-    let string = Random.word();
+    let string = Random.word(5);
     let childMenu = {
       name: string,
       redirect: string,

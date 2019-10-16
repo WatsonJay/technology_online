@@ -43,7 +43,7 @@
 
 <script>
   import Logo from '@/components/logo'
-  import { EventBus } from '../../assets/js/bus';
+  import { EventBus } from '@/vendor/bus';
   export default {
     name: "Header",
     components:{
