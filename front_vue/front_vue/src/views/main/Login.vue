@@ -1,28 +1,32 @@
 <template>
-  <div class="login-container">
-    <div class="ms-login">
-      <Logo/>
-      <div class="background">
-        <h3 class="title">系统登录</h3>
-        <el-form class="ms-content" :model="user" :rules="rules" ref="user" v-loading="loading">
-          <el-form-item prop="userName">
-            <el-input v-model="user.userName" placeholder="用户名">
-              <el-button slot="prepend" icon="el-icon-user" ></el-button>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="password">
-            <el-input type="password" v-model="user.password" placeholder="密码">
-              <el-button slot="prepend" icon="el-icon-key" ></el-button>
-            </el-input>
-          </el-form-item>
-          <div class="login-btn">
-            <el-button type="primary" style="width:65%;" @click="Login">登陆</el-button>
-            <el-button style="width:25%;" @click="goRegister">注册</el-button>
-          </div>
-        </el-form>
+  <el-container>
+    <el-main>
+      <div class="ms-login">
+        <Logo/>
+        <div class="background">
+          <h3 class="title">系统登录</h3>
+          <el-form class="ms-content" :model="user" :rules="rules" ref="user" v-loading="loading">
+            <el-form-item prop="userName">
+              <el-input v-model="user.userName" placeholder="用户名">
+                <el-button slot="prepend" icon="el-icon-user" ></el-button>
+              </el-input>
+            </el-form-item>
+            <el-form-item prop="password">
+              <el-input type="password" v-model="user.password" placeholder="密码">
+                <el-button slot="prepend" icon="el-icon-key" ></el-button>
+              </el-input>
+            </el-form-item>
+            <div class="login-btn">
+              <el-button type="primary" style="width:65%;" @click="Login">登陆</el-button>
+              <el-button style="width:25%;" @click="goRegister">注册</el-button>
+            </div>
+          </el-form>
+        </div>
       </div>
-    </div>
-  </div>
+    </el-main>
+    <el-footer></el-footer>
+  </el-container>
+
 </template>
 
 <script>
@@ -88,12 +92,13 @@
 </script>
 
 <style scoped>
-  .login-container{
+  .el-container{
     width: 100%;
     height: 100%;
     position:relative;
     background-image: url(../../assets/img/bg.png);
-    background-size: 100%;
+    background-size: cover;
+    background-position: center;
   }
   .ms-login{
     position: absolute;
