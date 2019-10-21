@@ -9,12 +9,12 @@ export const constantRouterMap = [
   {
     path: '/login',
     name: 'Login',
-    component: resolve => require(['@/views/main/Login.vue'], resolve)
+    component: resolve => require(['@/views/login/index.vue'], resolve)
   },
   {
     path: '/register',
     name: 'Register',
-    component: resolve => require(['@/views/main/Register.vue'], resolve)
+    component: resolve => require(['@/views/register/index.vue'], resolve)
   },
   {
     path: '/',

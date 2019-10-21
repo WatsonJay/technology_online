@@ -1,0 +1,212 @@
+<template>
+  <el-container>
+    <el-main>
+      <div class="ms-login">
+        <Logo/>
+        <div class="background">
+          <h3 class="title">系统登录</h3>
+          <el-form class="ms-content" :model="user" :rules="rules" ref="user" v-loading="loading">
+            <el-form-item prop="userName">
+              <i class="el-icon-lx icon-gerentouxiang"></i>
+              <el-input
+                ref="userName"
+                v-model="user.userName"
+                type="text"
+                placeholder="用户名"
+                tabindex="1"
+              />
+            </el-form-item>
+            <el-form-item prop="password">
+              <span>
+                <i class="el-icon-lx icon-jiesuo_o"></i>
+              </span>
+              <el-input
+                ref="password"
+                v-model="user.password"
+                :type="passwordType"
+                placeholder="密码"
+                tabindex="1"
+                @keyup.enter.native="Login"
+              />
+              <span class="show-pwd" @click="showPwd">
+                <i :class="passwordType === 'password' ? 'el-icon-lx icon-yanjing_yincang_o' : 'el-icon-lx icon-yanjing_xianshi_o'" />
+              </span>
+            </el-form-item>
+            <div class="login-btn">
+              <el-button type="primary" style="width:65%;" @click="Login">登陆</el-button>
+              <el-button style="width:25%;" @click="goRegister">注册</el-button>
+            </div>
+          </el-form>
+        </div>
+      </div>
+    </el-main>
+    <el-footer></el-footer>
+  </el-container>
+</template>
+
+<script>
+  import Logo from '@/components/logo'
+  import { login } from '@/api/main/api';// 导入我们的api接口
+  export default {
+    name: "Login",
+    components:{
+      Logo,
+    },
+    data(){
+      return{
+        url:require("../../assets/logo.png"),
+        labelPosition: 'left',
+        loading: false,
+        passwordType:"",
+        user: {
+          userName: '',
+          password: '',
+        },
+        rules: {
+          userName: [
+            { required: true, message: '请输入用户名' }
+          ],
+          password: [
+            { required: true, message: '请输入密码' }
+          ]
+        }
+      }
+    },
+    methods: {
+      goRegister: function () {
+        this.$router.push({name:'Register'})
+      },
+      Login: function () {
+        this.$refs.user.validate((valid) => {
+          //代表通过验证 ,将参数传回后台
+          if (valid){
+            this.loading=true;
+            let params = Object.assign({}, this.user);
+            login(params)
+              .then((result) => {
+                if (result.success) {
+                  this.$message.success(result.message);
+                  sessionStorage.setItem('access-token', result.data.userToken);
+                  sessionStorage.setItem('userName', this.user.userName);
+                  sessionStorage.setItem('userNickName', result.data.userNickName);
+                  sessionStorage.setItem('userAvatorUrl', result.data.userPicUrl);
+                  this.$router.push({name:'Home'});
+                }else{
+                  this.$message.error(result.message);
+                }
+                this.loading=false;
+              })
+              .catch((error) => {
+                this.$message.error("后端异常，请联系管理员");
+                this.loading=false;
+              });
+          }
+        });
+      },
+      showPwd() {
+        if (this.passwordType === 'password') {
+          this.passwordType = ''
+        } else {
+          this.passwordType = 'password'
+        }
+        this.$nextTick(() => {
+          this.$refs.password.focus()
+        })
+      },
+    },
+  }
+</script>
+
+<!--替换全局样式-->
+<style lang="scss">
+  $bg:#283443;
+  $light_gray:#fff;
+  $cursor: #fff;
+
+  @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
+    .el-container .el-input input {
+      color: $cursor;
+    }
+  }
+
+  /* reset element-ui css */
+  .el-container {
+    .el-input {
+      //display: inline-block;
+      height: 47px;
+      width: 85%;
+
+      input {
+        background: transparent;
+        border: 0px;
+        -webkit-appearance: none;
+        border-radius: 0px;
+        padding: 12px 5px 12px 15px;
+        color: $light_gray;
+        height: 47px;
+        caret-color: $cursor;
+
+        &:-webkit-autofill {
+          box-shadow: 0 0 0px 1000px $bg inset !important;
+          -webkit-text-fill-color: $cursor !important;
+        }
+      }
+    }
+
+    .el-form-item {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      color: #454545;
+    }
+  }
+</style>
+
+<!--局部样式-->
+<style lang="scss" scoped>
+  $bg:#2d3a4b;
+  $dark_gray:#889aa4;
+  $light_gray:#eee;
+
+  .el-container {
+    min-height: 100%;
+    width: 100%;
+    background-image: url(../../assets/img/bg.png);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+
+    .ms-login{
+      position: absolute;
+      left:50%;
+      top:40%;
+      width:350px;
+      margin:-190px 0 0 -175px;
+      overflow: hidden;
+    }
+    .background{
+      background: rgba(255,255,255, 0.3);
+      border-radius: 5px;
+    }
+    .title{
+      width: 100%;
+      text-align: center;
+      line-height: 50px;
+      color: #fff;
+      font-size: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    .ms-content{
+      padding: 30px 30px;
+      text-align: center;
+    }
+    .login-btn{
+      text-align: center;
+    }
+    .login-btn button{
+      width:100%;
+      height:36px;
+      margin-bottom: 10px;
+    }
+  }
+</style>

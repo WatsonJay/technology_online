@@ -6,8 +6,11 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 //集成iconfont图标
-import './assets/iconfont/iconfont.css';
+import '@/assets/iconfont/iconfont.css';
+// global css
+import '@/styles/index.scss'
 //模拟后端数据（测试用）
 import Mock from './mock'
 // 引入store
