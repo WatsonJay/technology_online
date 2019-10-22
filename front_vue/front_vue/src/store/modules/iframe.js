@@ -1,16 +1,21 @@
-const iframe = {
-  state: {
-    iframeUrl: []   // 嵌套页面路由路径
-  },
-  getters: {
-  },
-  mutations: {
-    setIFrameUrl(state, iframeUrl){  // 设置iframeUrl
-      state.iframeUrl = iframeUrl
-    }
-  },
-  actions: {
+const state = {
+  iframeUrl: []   // 嵌套页面路由路径
+}
+
+const  mutations = {
+  setIFrameUrl(state, iframeUrl) {  // 设置iframeUrl
+    state.iframeUrl = iframeUrl
   }
 }
 
-export default iframe
+const actions = {
+
+}
+
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions
+}

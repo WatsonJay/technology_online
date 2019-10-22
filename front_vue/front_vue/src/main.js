@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueResource from 'vue-resource'
+import Cookies from 'js-cookie'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
@@ -18,22 +19,20 @@ import store from './store'
 //前端拼接后台权限
 import  '@/router/permission'
 //vue-i18n 多语言版本处理
-import  VueI18n from 'vue-i18n'
+import i18n from './lang'
+
 //启动mock
 if(process.env.MOCK_NEEDED){
   Mock.init()
 }
 
 Vue.config.productionTip = false
-Vue.use(VueI18n)
+
 Vue.use(ElementUI);
 //Vue.use(VueResource);
-const  i18n = new VueI18n({
-  locale: 'zh',          //默认语言
-  message: {
-    'zh': require('./lang/zh'),
-    'en': require('./lang/en')
-  }
+Vue.use({
+  //size: Cookies.get('size') || 'medium', // set element-ui default size
+  i18n: (key, value) => i18n.t(key, value)
 })
 
 /* eslint-disable no-new */

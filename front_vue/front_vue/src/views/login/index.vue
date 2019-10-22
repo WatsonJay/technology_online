@@ -3,8 +3,12 @@
     <el-main>
       <div class="ms-login">
         <Logo/>
+
         <div class="background">
-          <h3 class="title">系统登录</h3>
+          <div class="title-containter">
+            <h3 class="title">系统登录</h3>
+            <lang-select class="set-language"/>
+          </div>
           <el-form class="ms-content" :model="user" :rules="rules" ref="user" v-loading="loading">
             <el-form-item prop="userName">
               <i class="el-icon-lx icon-gerentouxiang"></i>
@@ -46,18 +50,19 @@
 
 <script>
   import Logo from '@/components/logo'
+  import LangSelect from '@/components/langSelect'
   import { login } from '@/api/main/api';// 导入我们的api接口
   export default {
     name: "Login",
     components:{
-      Logo,
+      Logo,LangSelect
     },
     data(){
       return{
         url:require("../../assets/logo.png"),
         labelPosition: 'left',
         loading: false,
-        passwordType:"",
+        passwordType:"password",
         user: {
           userName: '',
           password: '',
@@ -188,13 +193,26 @@
       background: rgba(255,255,255, 0.3);
       border-radius: 5px;
     }
-    .title{
-      width: 100%;
-      text-align: center;
-      line-height: 50px;
-      color: #fff;
-      font-size: 20px;
-      border-bottom: 1px solid #ddd;
+    .title-containter{
+      position: relative;
+
+      .title{
+        width: 100%;
+        text-align: center;
+        line-height: 50px;
+        color: #fff;
+        font-size: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .set-language {
+        color: #fff;
+        position: absolute;
+        top: 7px;
+        font-size: 18px;
+        right: 5px;
+        cursor: pointer;
+      }
     }
     .ms-content{
       padding: 30px 30px;
@@ -207,6 +225,18 @@
       width:100%;
       height:36px;
       margin-bottom: 10px;
+    }
+    .el-icon-lx{
+      color: $dark_gray;
+    }
+    .show-pwd {
+      position: absolute;
+      right: 10px;
+      top: 7px;
+      font-size: 16px;
+      color: $dark_gray;
+      cursor: pointer;
+      user-select: none;
     }
   }
 </style>
