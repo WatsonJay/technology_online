@@ -6,7 +6,7 @@
 
         <div class="background">
           <div class="title-containter">
-            <h3 class="title">系统登录</h3>
+            <h3 class="title">{{ $t('system.login.title') }}</h3>
             <lang-select class="set-language"/>
           </div>
           <el-form class="ms-content" :model="user" :rules="rules" ref="user" v-loading="loading">
@@ -16,7 +16,7 @@
                 ref="userName"
                 v-model="user.userName"
                 type="text"
-                placeholder="用户名"
+                :placeholder="$t('placeholder.username')"
                 tabindex="1"
               />
             </el-form-item>
@@ -28,7 +28,7 @@
                 ref="password"
                 v-model="user.password"
                 :type="passwordType"
-                placeholder="密码"
+                :placeholder="$t('placeholder.password')"
                 tabindex="1"
                 @keyup.enter.native="Login"
               />
@@ -37,8 +37,8 @@
               </span>
             </el-form-item>
             <div class="login-btn">
-              <el-button type="primary" style="width:65%;" @click="Login">登陆</el-button>
-              <el-button style="width:25%;" @click="goRegister">注册</el-button>
+              <el-button type="primary" style="width:55%;" @click="Login">{{ $t('system.login.login') }}</el-button>
+              <el-button style="width:35%;" @click="goRegister">{{ $t('system.login.register') }}</el-button>
             </div>
           </el-form>
         </div>
@@ -69,10 +69,10 @@
         },
         rules: {
           userName: [
-            { required: true, message: '请输入用户名' }
+            { required: true, message: this.$t('rules.username.notnull') }
           ],
           password: [
-            { required: true, message: '请输入密码' }
+            { required: true, message: this.$t('rules.password.notnull') }
           ]
         }
       }

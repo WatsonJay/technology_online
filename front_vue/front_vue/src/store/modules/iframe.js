@@ -3,13 +3,15 @@ const state = {
 }
 
 const  mutations = {
-  setIFrameUrl(state, iframeUrl) {  // 设置iframeUrl
+  SET_IFRAMEURL(state, iframeUrl) {  // 设置iframeUrl
     state.iframeUrl = iframeUrl
   }
 }
 
 const actions = {
-
+  setIframUrl({ commit }, iframeUrl) {
+    commit('SET_IFRAMEURL', iframeUrl)
+  },
 }
 
 

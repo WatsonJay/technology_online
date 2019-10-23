@@ -4,16 +4,21 @@ const state={
 }
 
 const mutations={
-    set_routerList: (state, routerList) => {
+    SET_ROUTERLIST: (state, routerList) => {
       state.routerList = routerList
     },
-    set_routerGetted: (state, routerGetted) => {
+    SET_ROUTERGETTED: (state, routerGetted) => {
       state.routerGetted = routerGetted
     },
 }
 
 const actions={
-
+  setRouterList({ commit }, routerList) {
+    commit('SET_ROUTERLIST', routerList)
+  },
+  setRouterGetted({ commit }, routerGetted) {
+    commit('SET_ROUTERGETTED', routerGetted)
+  },
 }
 
 
