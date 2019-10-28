@@ -32,6 +32,9 @@ export default {
       login: 'Login',
       register: 'Register',
     },
+    register:{
+      title: 'User Register',
+    },
     settings:{
 
     },

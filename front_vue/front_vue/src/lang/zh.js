@@ -31,6 +31,9 @@ export default {
       login: '登陆',
       register: '注册',
     },
+    register:{
+      title: '用户注册  ',
+    },
     settings:{
 
     },

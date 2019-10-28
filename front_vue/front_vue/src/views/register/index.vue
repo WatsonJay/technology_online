@@ -1,72 +1,27 @@
 <template>
-  <div class="register-container">
-    <div class="ms-register">
-      <Logo/>
-      <div class="background">
-        <h3 class="title">用户注册</h3>
-        <el-upload
-          class="avatar-uploader"
-          ref="upload"
-          name="smfile"
-          action="/sm.ms/upload"
-          :show-file-list="false"
-          :on-change="imgPreview"
-          :on-success="uploadSuccess"
-          :on-error="uploadError"
-          :before-upload="beforeUpload"
-          :auto-upload="false">
-          <img v-if="imageUrl" :src="imageUrl" class="avatar">
-          <i v-else class="el-icon-user avatar-uploader-icon"></i>
-          <div slot="tip" class="el-upload__tip"><span style="color: red">*</span>请点击上传jpg/png文件，且不超过2M</div>
-        </el-upload>
-        <el-form class="ms-content" :model="user" :rules="rules" ref="user" v-loading="loading">
-          <el-form-item prop="userName">
-            <el-input v-model="user.userName" placeholder="用户名">
-              <el-button slot="prepend" icon="el-icon-user" ></el-button>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="userNickName">
-            <el-input v-model="user.userNickName" placeholder="昵称">
-              <el-button slot="prepend" icon="el-icon-postcard" ></el-button>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="password" required>
-            <el-input type="password" v-model="user.password" placeholder="密码">
-              <el-button slot="prepend" icon="el-icon-key" ></el-button>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="rePassword">
-            <el-input type="password" v-model="user.rePassword" placeholder="确认密码">
-              <el-button slot="prepend" icon="el-icon-connection" ></el-button>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="userMail">
-            <el-input v-model="user.userMail" placeholder="邮箱">
-              <el-button slot="prepend" icon="el-icon-message" ></el-button>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="userPhone">
-            <el-input v-model="user.userPhone" placeholder="电话">
-              <el-button slot="prepend" icon="el-icon-phone" ></el-button>
-            </el-input>
-          </el-form-item>
-          <div class="login-btn">
-            <el-button type="primary" style="width:65%;" @click.native="registerUser">注册</el-button>
-            <el-button style="width:25%;" @click="goBack">返回</el-button>
+  <el-container>
+    <el-main>
+      <div class="ms-register">
+        <Logo/>
+        <div class="background">
+          <div class="title-containter">
+            <h3 class="title">{{ $t('system.register.title') }}</h3>
+            <lang-select class="set-language"/>
           </div>
-        </el-form>
+        </div>
       </div>
-    </div>
-  </div>
+    </el-main>
+  </el-container>
 </template>
 
 <script>
   import Logo from '@/components/logo'
+  import LangSelect from '@/components/langSelect'
   import { registerUser } from '@/api/main/api';// 导入我们的api接口
   export default {
     name: "Register",
     components:{
-      Logo,
+      Logo,LangSelect,
     },
     data(){
       var validatePassword = (rule, value, callback) => {
@@ -197,35 +152,54 @@
   }
 </script>
 
-<style scoped>
-  .register-container{
+<style lang="scss" scoped>
+  .el-container{
     width: 100%;
     height: 100%;
     position:relative;
     background-image: url(../../assets/img/bg.png);
     background-size: 100%;
-  }
-  .ms-register{
-    position: absolute;
-    left:45%;
-    top:25%;
-    width:500px;
-    text-align: center;
-    margin:-190px 0 0 -175px;
     overflow: hidden;
+
+    .ms-register{
+      position: absolute;
+      left:45%;
+      top:25%;
+      width:500px;
+      text-align: center;
+      margin:-190px 0 0 -175px;
+      overflow: hidden;
+    }
+
+    .background{
+      background: rgba(255,255,255, 0.3);
+      border-radius: 5px;
+    }
+
+    .title-containter{
+      position: relative;
+
+      .title{
+        width: 100%;
+        text-align: center;
+        line-height: 50px;
+        color: #fff;
+        font-size: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .set-language {
+        color: #fff;
+        position: absolute;
+        top: 7px;
+        font-size: 18px;
+        right: 5px;
+        cursor: pointer;
+      }
+    }
   }
-  .background{
-    background: rgba(255,255,255, 0.3);
-    border-radius: 5px;
-  }
-  .title{
-    width: 100%;
-    text-align: center;
-    line-height: 50px;
-    color: #fff;
-    font-size: 20px;
-    border-bottom: 1px solid #ddd;
-  }
+
+
   .ms-content{
     padding: 30px 30px;
     text-align: center;
