@@ -1,15 +1,67 @@
 <template>
-  <el-container>
-    <el-main>
-      <div class="ms-register">
-        <Logo/>
-        <div class="background">
-          <div class="title-containter">
-            <h3 class="title">{{ $t('system.register.title') }}</h3>
-            <lang-select class="set-language"/>
-          </div>
-        </div>
-      </div>
+  <el-container class="backgroundImg">
+    <el-main class="ms-register">
+      <Logo/>
+      <el-container class="background">
+        <el-header class="title-containter">
+          <h3 class="title">{{ $t('system.register.title') }}</h3>
+          <lang-select class="set-language"/>
+        </el-header>
+        <el-main>
+          <el-upload
+            class="avatar-uploader"
+            ref="upload"
+            name="smfile"
+            action="/sm.ms/upload"
+            :show-file-list="false"
+            :on-change="imgPreview"
+            :on-success="uploadSuccess"
+            :on-error="uploadError"
+            :before-upload="beforeUpload"
+            :auto-upload="false">
+            <img v-if="imageUrl" :src="imageUrl" class="avatar">
+            <i v-else class="el-icon-user avatar-uploader-icon"></i>
+            <div slot="tip" class="el-upload__tip"><span style="color: red">*</span>{{ $t('rules.common.pic') }}</div>
+          </el-upload>
+          <el-form class="ms-content" :model="user" :rules="rules" ref="user" v-loading="loading">
+            <el-form-item prop="userName">
+              <i class="el-icon-user"></i>
+              <el-input v-model="user.userName" :placeholder="$t('rules.placeholder.username')"></el-input>
+            </el-form-item>
+            <el-form-item prop="userNickName">
+              <i class="el-icon-postcard"></i>
+              <el-input v-model="user.userNickName" :placeholder="$t('rules.placeholder.nickname')"></el-input>
+            </el-form-item>
+            <el-form-item prop="password" required>
+            <span>
+              <i class="el-icon-key"></i>
+            </span>
+              <el-input ref="password" :type="passwordType" v-model="user.password" :placeholder="$t('rules.placeholder.password')"></el-input>
+              <span class="show-pwd" @click="showPwd">
+              <i :class="passwordType === 'password' ? 'el-icon-lx icon-yanjing_yincang_o' : 'el-icon-lx icon-yanjing_xianshi_o'" />
+            </span>
+            </el-form-item>
+            <el-form-item prop="rePassword">
+            <span>
+              <i class="el-icon-connection"></i>
+            </span>
+              <el-input type="password" v-model="user.rePassword" placeholder="确认密码"></el-input>
+            </el-form-item>
+            <el-form-item prop="userMail">
+              <i class="el-icon-message"></i>
+              <el-input v-model="user.userMail" placeholder="邮箱"></el-input>
+            </el-form-item>
+            <el-form-item prop="userPhone">
+              <i class="el-icon-phone"></i>
+              <el-input v-model="user.userPhone" placeholder="电话"></el-input>
+            </el-form-item>
+            <div class="login-btn">
+              <el-button type="primary" style="width:65%;" @click.native="registerUser">注册</el-button>
+              <el-button style="width:25%;" @click="goBack">返回</el-button>
+            </div>
+          </el-form>
+        </el-main>
+      </el-container>
     </el-main>
   </el-container>
 </template>
@@ -57,6 +109,7 @@
         },
         imageUrl: '',
         loading: false,
+        passwordType:"password",
         rules:{
           userName: [
             { required: true, message: '请输入用户名称', trigger: 'blur' },
@@ -87,6 +140,16 @@
     methods: {
       goBack: function () {
         this.$router.go(-1)
+      },
+      showPwd(){
+        if(this.passwordType === 'password'){
+          this.passwordType = 'text'
+        }else {
+          this.passwordType = 'password'
+        }
+        this.$nextTick(() => {
+          this.$refs.password.focus()
+        })
       },
       imgPreview (file, fileList) {
         let fileName = file.name;
@@ -152,82 +215,152 @@
   }
 </script>
 
+<!--替换全局样式-->
+<style lang="scss">
+  $bg:#283443;
+  $light_gray:#fff;
+  $cursor: #fff;
+
+  @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
+    .el-container .el-input input {
+      color: $cursor;
+    }
+  }
+
+  /* reset element-ui css */
+  .el-container {
+    .el-input {
+      //display: inline-block;
+      height: 47px;
+      width: 85%;
+
+      input {
+        background: transparent;
+        border: 0px;
+        -webkit-appearance: none;
+        border-radius: 0px;
+        padding: 12px 5px 12px 15px;
+        color: $light_gray;
+        height: 47px;
+        caret-color: $cursor;
+
+        &:-webkit-autofill {
+          box-shadow: 0 0 0px 1000px $bg inset !important;
+          -webkit-text-fill-color: $cursor !important;
+        }
+      }
+    }
+
+    .el-form-item {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      color: #454545;
+    }
+  }
+</style>
+
 <style lang="scss" scoped>
+  $dark_gray:#889aa4;
+
   .el-container{
     width: 100%;
     height: 100%;
     position:relative;
-    background-image: url(../../assets/img/bg.png);
-    background-size: 100%;
     overflow: hidden;
 
     .ms-register{
       position: absolute;
-      left:45%;
-      top:25%;
-      width:500px;
+      left:0;
+      right:0;
+      bottom: 20px;
+      top:20px;
+      margin: auto;
+      width:35%;
+      min-width: 400px;
       text-align: center;
-      margin:-190px 0 0 -175px;
       overflow: hidden;
-    }
 
-    .background{
-      background: rgba(255,255,255, 0.3);
-      border-radius: 5px;
-    }
+      .background{
+        background: rgba(255,255,255, 0.3);
+        border-radius: 6px;
+        height: 80%;
 
-    .title-containter{
-      position: relative;
+        .title-containter{
+          position: relative;
 
-      .title{
-        width: 100%;
-        text-align: center;
-        line-height: 50px;
-        color: #fff;
-        font-size: 20px;
-        border-bottom: 1px solid #ddd;
+          .title{
+            width: 100%;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            font-size: 20px;
+            border-bottom: 1px solid #ddd;
+
+          }
+
+          .set-language {
+            color: #fff;
+            position: absolute;
+            top: 20px;
+            font-size: 18px;
+            right: 5px;
+            cursor: pointer;
+          }
+        }
+
+        .ms-content{
+          text-align: center;
+          z-index: 1;
+          margin-top: 10px;
+          postion:absolute;
+          overflow-y: auto;
+
+          .show-pwd {
+            position: absolute;
+            right: 10px;
+            top: 7px;
+            font-size: 16px;
+            color: $dark_gray;
+            cursor: pointer;
+            user-select: none;
+          }
+
+          .login-btn{
+            text-align: center;
+          }
+          .login-btn button{
+            width:100%;
+            height:36px;
+            margin-bottom: 10px;
+          }
+        }
+
+        .el-upload__tip{
+          color: #fff;
+        }
+
+        .avatar-uploader-icon {
+          font-size: 28px;
+          color: #8c939d;
+          width: 90px;
+          height: 90px;
+          line-height: 90px;
+          text-align: center;
+        }
+
+        .avatar {
+          margin-top: 10px;
+          width: 90px;
+          height: 90px;
+          display: block;
+          border-radius: 50%;
+        }
+
       }
-
-      .set-language {
-        color: #fff;
-        position: absolute;
-        top: 7px;
-        font-size: 18px;
-        right: 5px;
-        cursor: pointer;
-      }
     }
   }
 
 
-  .ms-content{
-    padding: 30px 30px;
-    text-align: center;
-  }
-  .el-upload__tip{
-    color: #fff;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 90px;
-    height: 90px;
-    line-height: 90px;
-    text-align: center;
-  }
-  .avatar {
-    margin-top: 10px;
-    width: 90px;
-    height: 90px;
-    display: block;
-    border-radius: 50%;
-  }
-  .login-btn{
-    text-align: center;
-  }
-  .login-btn button{
-    width:100%;
-    height:36px;
-    margin-bottom: 10px;
-  }
+
 </style>

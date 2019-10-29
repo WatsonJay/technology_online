@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="backgroundImg">
     <el-main>
       <div class="ms-login">
         <Logo/>
@@ -28,7 +28,7 @@
                 v-model="user.password"
                 :type="passwordType"
                 :placeholder="$t('placeholder.password')"
-                tabindex="1"
+                tabindex="2"
                 @keyup.enter.native="Login"
               />
               <span class="show-pwd" @click="showPwd">
@@ -109,7 +109,7 @@
       },
       showPwd() {
         if (this.passwordType === 'password') {
-          this.passwordType = ''
+          this.passwordType = 'text'
         } else {
           this.passwordType = 'password'
         }
@@ -175,8 +175,6 @@
   .el-container {
     min-height: 100%;
     width: 100%;
-    background-image: url(../../assets/img/bg.png);
-    background-size: cover;
     background-position: center;
     overflow: hidden;
 

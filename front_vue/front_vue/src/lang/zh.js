@@ -7,6 +7,10 @@ export default {
   placeholder:{
     username: '用户名',
     password: '密码',
+    nickname: '昵称',
+    password: '密码',
+    password: '密码',
+    password: '密码',
   },
   //系统提示
   tip:{
@@ -15,7 +19,7 @@ export default {
   //校验规则
   rules:{
     common:{
-
+      pic:'请点击上传jpg/png文件，且不超过2M',
     },
     username: {
       notnull: '请输入用户名',
