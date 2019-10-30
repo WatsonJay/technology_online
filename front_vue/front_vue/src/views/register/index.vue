@@ -26,17 +26,17 @@
           <el-form class="ms-content" :model="user" :rules="rules" ref="user" v-loading="loading">
             <el-form-item prop="userName">
               <i class="el-icon-user"></i>
-              <el-input v-model="user.userName" :placeholder="$t('rules.placeholder.username')"></el-input>
+              <el-input v-model="user.userName" :placeholder="$t('placeholder.username')"></el-input>
             </el-form-item>
             <el-form-item prop="userNickName">
               <i class="el-icon-postcard"></i>
-              <el-input v-model="user.userNickName" :placeholder="$t('rules.placeholder.nickname')"></el-input>
+              <el-input v-model="user.userNickName" :placeholder="$t('placeholder.nickname')"></el-input>
             </el-form-item>
             <el-form-item prop="password" required>
             <span>
               <i class="el-icon-key"></i>
             </span>
-              <el-input ref="password" :type="passwordType" v-model="user.password" :placeholder="$t('rules.placeholder.password')"></el-input>
+              <el-input ref="password" :type="passwordType" v-model="user.password" :placeholder="$t('placeholder.password')"></el-input>
               <span class="show-pwd" @click="showPwd">
               <i :class="passwordType === 'password' ? 'el-icon-lx icon-yanjing_yincang_o' : 'el-icon-lx icon-yanjing_xianshi_o'" />
             </span>
@@ -45,19 +45,19 @@
             <span>
               <i class="el-icon-connection"></i>
             </span>
-              <el-input type="password" v-model="user.rePassword" placeholder="确认密码"></el-input>
+              <el-input type="password" v-model="user.rePassword" :placeholder="$t('placeholder.checkpassword')"></el-input>
             </el-form-item>
             <el-form-item prop="userMail">
               <i class="el-icon-message"></i>
-              <el-input v-model="user.userMail" placeholder="邮箱"></el-input>
+              <el-input v-model="user.userMail" :placeholder="$t('placeholder.Email')"></el-input>
             </el-form-item>
             <el-form-item prop="userPhone">
               <i class="el-icon-phone"></i>
-              <el-input v-model="user.userPhone" placeholder="电话"></el-input>
+              <el-input v-model="user.userPhone" :placeholder="$t('placeholder.phone')"></el-input>
             </el-form-item>
             <div class="login-btn">
-              <el-button type="primary" style="width:65%;" @click.native="registerUser">注册</el-button>
-              <el-button style="width:25%;" @click="goBack">返回</el-button>
+              <el-button type="primary" style="width:65%;" @click.native="registerUser">{{ $t('system.login.register') }}</el-button>
+              <el-button style="width:25%;" @click="goBack">{{ $t('system.register.goback') }}</el-button>
             </div>
           </el-form>
         </el-main>
@@ -78,7 +78,7 @@
     data(){
       var validatePassword = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请输入密码'));
+          callback(new Error(this.$t('rules.password.notnull')));
         } else {
           if (this.rePassword !== '') {
             this.$refs.user.validateField('rePassword');
@@ -88,9 +88,9 @@
       };
       var validateRePassword = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请再次输入密码'));
+          callback(new Error(this.$t('rules.repassword.notnull')));
         } else if (value !== this.user.password) {
-          callback(new Error('两次输入密码不一致!'));
+          callback(new Error(this.$t('rules.password.notmatch')));
         } else {
           callback();
         }
@@ -112,12 +112,12 @@
         passwordType:"password",
         rules:{
           userName: [
-            { required: true, message: '请输入用户名称', trigger: 'blur' },
+            { required: true, message: this.$t('rules.username.notnull'), trigger: 'blur' },
             { min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur' },
             { pattern: /^[a-zA-Z0-9_]+$/, message: '请输入合法的字符' }
           ],
           userNickName: [
-            { required: true, message: '请输入用户昵称', trigger: 'blur' },
+            { required: true, message: this.$t('rules.userNickName.notnull'), trigger: 'blur' },
             { min: 3, max: 30, message: '长度在 3 到 30 个字符', trigger: 'blur' },
             { pattern: /^[\u4e00-\u9fa5a-z0-9_]+$/, message: '请输入合法的字符' }
           ],
@@ -128,7 +128,7 @@
             { validator: validateRePassword, trigger: 'blur' }
           ],
           userMail: [
-            { required: true, message: '请输入用户邮箱', trigger: 'blur' },
+            { required: true, message: this.$t('rules.Email.notnull'), trigger: 'blur' },
             { pattern: /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/, message: '请输入合法的邮箱' }
           ],
           userPhone: [

@@ -8,9 +8,9 @@ export default {
     username: '用户名',
     password: '密码',
     nickname: '昵称',
-    password: '密码',
-    password: '密码',
-    password: '密码',
+    checkpassword: '确认密码',
+    Email: '邮箱',
+    phone: '电话',
   },
   //系统提示
   tip:{
@@ -26,6 +26,16 @@ export default {
     },
     password: {
       notnull: '请输入密码',
+      notmatch: '密码不匹配',
+    },
+    userNickName: {
+      notnull: '请输入昵称',
+    },
+    repassword: {
+      notnull: '请再次输入密码',
+    },
+    Email: {
+      notnull: '请输入邮箱',
     },
   },
   //系统页面
@@ -37,6 +47,7 @@ export default {
     },
     register:{
       title: '用户注册  ',
+      goback: '返回',
     },
     settings:{
 

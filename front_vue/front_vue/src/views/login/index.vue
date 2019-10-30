@@ -29,14 +29,20 @@
                 :type="passwordType"
                 :placeholder="$t('placeholder.password')"
                 tabindex="2"
-                @keyup.enter.native="Login"
               />
               <span class="show-pwd" @click="showPwd">
                 <i :class="passwordType === 'password' ? 'el-icon-lx icon-yanjing_yincang_o' : 'el-icon-lx icon-yanjing_xianshi_o'" />
               </span>
             </el-form-item>
             <div class="login-btn">
-              <el-button type="primary" style="width:55%;" @click="Login">{{ $t('system.login.login') }}</el-button>
+              <!--<el-button type="primary" style="width:55%;" @click="Login">{{ $t('system.login.login') }}</el-button>-->
+              <el-popover
+                placement="bottom"
+                width="400"
+                trigger="click"
+                content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+                <el-button type="primary" style="width:55%;" slot="reference">{{ $t('system.login.login') }}</el-button>
+              </el-popover>
               <el-button style="width:35%;" @click="goRegister">{{ $t('system.login.register') }}</el-button>
             </div>
           </el-form>
@@ -181,7 +187,7 @@
     .ms-login{
       position: absolute;
       left:50%;
-      top:40%;
+      top:25%;
       width:350px;
       margin:-190px 0 0 -175px;
       overflow: hidden;
