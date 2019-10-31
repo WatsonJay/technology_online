@@ -15,6 +15,8 @@ export default {
   //系统提示
   tip:{
     translate:'切换语言成功',
+    backstageError:'后端异常，请联系管理员',
+    slidingPic:'拖动左边滑块完成上方拼图',
   },
   //校验规则
   rules:{

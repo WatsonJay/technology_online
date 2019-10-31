@@ -29,7 +29,17 @@
     export default {
       name: "slidingPic",
       data(){
-        tips:$t()
+        return{
+          tips:this.$t('tip.slidingPic'),
+          visible:false,
+          //滑块x轴数据
+          slider: {
+            mx: 0,
+            bx: 0
+          },
+          //拼图是否正确
+          puzzle: false,
+        }
       }
 
     }

@@ -107,7 +107,7 @@
                 this.loading=false;
               })
               .catch((error) => {
-                this.$message.error("后端异常，请联系管理员");
+                this.$message.error(this.$t('tip.backstageError'));
                 this.loading=false;
               });
           }

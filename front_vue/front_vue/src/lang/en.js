@@ -4,10 +4,6 @@ export default {
 
 
   },
-  //System Tip
-  tip:{
-    translate:'Switch Language Success',
-  },
   //Input Placeholder
   placeholder:{
     username: 'Username',
@@ -17,6 +13,13 @@ export default {
     Email: 'Email',
     phone: 'phone',
   },
+  //System Tip
+  tip:{
+    translate:'Switch Language Success',
+    backstageError:'backStage is exception, please contact administrator',
+    slidingPic:'please drag the slider to complete the puzzle',
+  },
+
   //Check Rule
   rules:{
     common:{
