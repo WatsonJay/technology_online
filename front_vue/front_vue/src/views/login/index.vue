@@ -39,9 +39,10 @@
               <el-popover
                 placement="bottom"
                 width="400"
-                trigger="click"
-                content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
-                <el-button type="primary" style="width:55%;" slot="reference">{{ $t('system.login.login') }}</el-button>
+                trigger="manual"
+                v-model="visible">
+                <slidingPic :key="uuid"></slidingPic>
+                <el-button type="primary" style="width:55%;" slot="reference" @click="validate">{{ $t('system.login.login') }}</el-button>
               </el-popover>
               <el-button style="width:35%;" @click="goRegister">{{ $t('system.login.register') }}</el-button>
             </div>
@@ -56,11 +57,13 @@
 <script>
   import Logo from '@/components/logo'
   import LangSelect from '@/components/langSelect'
+  // 组件懒加载
+  const slidingPic = () => import('@/components/slidingPic')
   import { login } from '@/api/main/api';// 导入我们的api接口
   export default {
     name: "Login",
     components:{
-      Logo,LangSelect
+      Logo,LangSelect,slidingPic
     },
     data(){
       return{
@@ -68,6 +71,8 @@
         labelPosition: 'left',
         loading: false,
         passwordType:"password",
+        visible:false,
+        uuid:"",
         user: {
           userName: '',
           password: '',
@@ -123,6 +128,10 @@
           this.$refs.password.focus()
         })
       },
+      validate(){
+        this.visible = !this.visible
+        this.uuid = UUID.createUUID()
+      }
     },
   }
 </script>
