@@ -23,7 +23,8 @@ export default {
   //Check Rule
   rules:{
     common:{
-      pic:'Please upload jpg/png file, and no more than 2M',
+      picType:'Please upload jpg/png file',
+      picSize:'pic no more than 2MB'
     },
     username: {
       notnull: 'plesae input usename',

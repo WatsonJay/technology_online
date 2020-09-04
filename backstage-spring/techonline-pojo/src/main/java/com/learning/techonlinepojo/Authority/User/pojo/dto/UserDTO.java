@@ -22,8 +22,8 @@ public class UserDTO {
             {userPower} 用户权限
             {userStatus} 用户状态
          */
-    @ApiModelProperty(value = "用户ID", name = "id",dataType = "int", example = "1")
-    private int id;
+    @ApiModelProperty(value = "用户ID", name = "id",dataType = "String", example = "1")
+    private String id;
     @ApiModelProperty(value = "用户Token", name = "userToken",dataType = "String", example = "AAA.BBB.CCC")
     private String userToken;
     @ApiModelProperty(value = "用户名", name = "userName",dataType = "String", example = "admin")
@@ -38,17 +38,13 @@ public class UserDTO {
     private String userPhone;
     @ApiModelProperty(value = "用户状态", name = "userStatus",dataType = "Boolean", example = "true")
     private int userStatus;
-    @ApiModelProperty(value = "头像名称", name = "picName",dataType = "String", example = "user")
-    private String picName;
-    @ApiModelProperty(value = "头像图床地址", name = "userPicUrl",dataType = "String", example = "xxx")
-    private String userPicUrl;
-    @ApiModelProperty(value = "头像删除地址", name = "userPicDelUrl",dataType = "String", example = "xxx")
-    private String userPicDelUrl;
+    @ApiModelProperty(value = "图片Id", name = "picId",dataType = "String", example = "user")
+    private String picId;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     public String getUserToken() {
@@ -87,28 +83,16 @@ public class UserDTO {
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
-    public int isUserStatus() {
+    public int getUserStatus() {
         return userStatus;
     }
     public void setUserStatus(int userStatus) {
         this.userStatus = userStatus;
     }
-    public String getPicName() {
-        return picName;
+    public String getPicId() {
+        return picId;
     }
-    public void setPicName(String picName) {
-        this.picName = picName;
-    }
-    public String getUserPicUrl() {
-        return userPicUrl;
-    }
-    public void setUserPicUrl(String userPicUrl) {
-        this.userPicUrl = userPicUrl;
-    }
-    public String getUserPicDelUrl() {
-        return userPicDelUrl;
-    }
-    public void setUserPicDelUrl(String userPicDelUrl) {
-        this.userPicDelUrl = userPicDelUrl;
+    public void setPicId(String picId) {
+        this.picId = picId;
     }
 }

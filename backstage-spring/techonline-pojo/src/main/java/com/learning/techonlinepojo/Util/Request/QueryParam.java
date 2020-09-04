@@ -1,4 +1,4 @@
-package com.learning.techonlinepojo.Request;
+package com.learning.techonlinepojo.Util.Request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

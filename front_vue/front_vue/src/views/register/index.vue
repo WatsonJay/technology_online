@@ -204,10 +204,10 @@
         let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
         const hasFIle=regex.test(fileName.toLowerCase ())
         if (!hasFIle) {
-          this.$message.error('请选择图片文件');
+          this.$message.error(this.$t('rules.common.picType'));
         }
         if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
+          this.$message.error(this.$t());
         }
         return  isLt2M && hasFIle;
       }

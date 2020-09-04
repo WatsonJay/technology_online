@@ -28,9 +28,8 @@ public class UserPO {
             {userPower} 用户权限
             {userStatus} 用户状态
          */
-    @ApiModelProperty(value = "用户ID", name = "id",dataType = "int", example = "1")
-    @TableId(value="id",type= IdType.AUTO)
-    private int id;
+    @ApiModelProperty(value = "用户ID", name = "id",dataType = "String", example = "1")
+    private String id;
     @ApiModelProperty(value = "用户名", name = "userName",dataType = "String", example = "admin")
     private String userName;
     @ApiModelProperty(value = "用户昵称", name = "userNickName",dataType = "String", example = "admin")
@@ -43,18 +42,13 @@ public class UserPO {
     private String userPhone;
     @ApiModelProperty(value = "用户状态", name = "userStatus",dataType = "Boolean", example = "true")
     private int userStatus;
-    @ApiModelProperty(value = "头像名称", name = "picName",dataType = "String", example = "user")
-    private String picName;
-    @ApiModelProperty(value = "头像图床地址", name = "userPicUrl",dataType = "String", example = "xxx")
-    private String userPicUrl;
-    @TableField(value = "pic_del_url")
-    @ApiModelProperty(value = "头像删除地址", name = "userPicDelUrl",dataType = "String", example = "xxx")
-    private String userPicDelUrl;
+    @ApiModelProperty(value = "图片Id", name = "picId",dataType = "String", example = "user")
+    private String picId;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     public String getUserName() {
@@ -87,34 +81,22 @@ public class UserPO {
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
-    public int isUserStatus() {
+    public int getUserStatus() {
         return userStatus;
     }
     public void setUserStatus(int userStatus) {
         this.userStatus = userStatus;
     }
-    public String getPicName() {
-        return picName;
+    public String getPicId() {
+        return picId;
     }
-    public void setPicName(String picName) {
-        this.picName = picName;
-    }
-    public String getUserPicUrl() {
-        return userPicUrl;
-    }
-    public void setUserPicUrl(String userPicUrl) {
-        this.userPicUrl = userPicUrl;
-    }
-    public String getUserPicDelUrl() {
-        return userPicDelUrl;
-    }
-    public void setUserPicDelUrl(String userPicDelUrl) {
-        this.userPicDelUrl = userPicDelUrl;
+    public void setPicId(String picId) {
+        this.picId = picId;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserPO{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", userNickName='" + userNickName + '\'' +
@@ -122,9 +104,7 @@ public class UserPO {
                 ", userMail='" + userMail + '\'' +
                 ", userPhone='" + userPhone + '\'' +
                 ", userStatus=" + userStatus +
-                ", picName='" + picName + '\'' +
-                ", userPicUrl='" + userPicUrl + '\'' +
-                ", userPicDelUrl='" + userPicDelUrl + '\'' +
+                ", picId='" + picId + '\'' +
                 '}';
     }
 }

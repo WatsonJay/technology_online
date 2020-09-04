@@ -1,4 +1,4 @@
-package com.learning.techonlinepojo.ResponseException;
+package com.learning.techonlinepojo.Util.ResponseException;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

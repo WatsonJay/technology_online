@@ -33,6 +33,7 @@
     <modules>
         <module>techonline-booter</module>
         <module>techonline-pojo</module>
+        <module>techonline-common</module>
         <module>techonline-shiro-jwt</module>
         <module>techonline-swagger</module>
         <module>techonline-authority</module>

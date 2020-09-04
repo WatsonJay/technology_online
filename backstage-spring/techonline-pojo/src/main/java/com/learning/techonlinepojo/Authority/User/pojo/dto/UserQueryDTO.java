@@ -15,19 +15,19 @@ import javax.validation.constraints.Pattern;
 @ApiModel("用户查询DTO")
 public class UserQueryDTO {
 
-    @ApiModelProperty(value = "用户ID", name = "id",dataType = "int", example = "1")
-    private int id;
+    @ApiModelProperty(value = "用户ID", name = "id",dataType = "String", example = "1")
+    private String id;
     @ApiModelProperty(value = "用户名", name = "userName",dataType = "String", example = "admin")
     @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "用户名存在非法的字符")
     private String userName;
     @ApiModelProperty(value = "用户状态", name = "userStatus",dataType = "Boolean", example = "true")
     private int userStatus;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -39,7 +39,7 @@ public class UserQueryDTO {
         this.userName = userName;
     }
 
-    public int isUserStatus() {
+    public int getUserStatus() {
         return userStatus;
     }
 

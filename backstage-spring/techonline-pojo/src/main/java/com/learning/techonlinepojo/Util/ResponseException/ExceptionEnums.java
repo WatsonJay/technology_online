@@ -1,4 +1,4 @@
-package com.learning.techonlinepojo.ResponseException;
+package com.learning.techonlinepojo.Util.ResponseException;
 
 /**
  * @author Jaywatson

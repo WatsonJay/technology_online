@@ -1,6 +1,6 @@
-package com.learning.techonlinepojo.Response;
+package com.learning.techonlinepojo.Util.Response;
 
-import com.learning.techonlinepojo.ResponseException.ExceptionEnums;
+import com.learning.techonlinepojo.Util.ResponseException.ExceptionEnums;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

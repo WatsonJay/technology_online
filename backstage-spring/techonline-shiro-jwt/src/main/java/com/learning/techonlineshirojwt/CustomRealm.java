@@ -3,7 +3,7 @@ package com.learning.techonlineshirojwt;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.learning.techonlineauthority.service.UserService;
 import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
-import com.learning.techonlinepojo.JwtToken.JwtTokenBean;
+import com.learning.techonlinepojo.Util.JwtToken.JwtTokenBean;
 import com.learning.techonlineutil.JwtToken;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -63,7 +63,7 @@ public class CustomRealm extends AuthorizingRealm {
         // 用户不会空
         if (user != null) {
             // 判断是否禁用
-            if (!user.isUserStatus()) {
+            if (user.getUserStatus()==0) {
                 throw new AuthenticationException("901");
             }
             // 密码验证

@@ -2,14 +2,15 @@ package com.learning.techonlineauthority.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.learning.techonlineauthority.service.UserService;
+import com.learning.techonlinecommon.service.PictureService;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserModifDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserLoginDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.dto.UserQueryDTO;
 import com.learning.techonlinepojo.Authority.User.pojo.po.UserPO;
-import com.learning.techonlinepojo.Request.QueryParam;
-import com.learning.techonlinepojo.Response.ResponseBean;
-import com.learning.techonlinepojo.ResponseException.ExceptionEnums;
+import com.learning.techonlinepojo.Util.Request.QueryParam;
+import com.learning.techonlinepojo.Util.Response.ResponseBean;
+import com.learning.techonlinepojo.Util.ResponseException.ExceptionEnums;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -19,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,24 +41,33 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PictureService pictureService;
+
     @ApiOperation(value = "用户注册接口",notes = "用户注册接口")
-    @PostMapping(value = "/registerUser")
+    @PostMapping(value = "/addOrUpadteUser")
     @ApiResponses( value = {
             @ApiResponse( code = 200, message = "成功", response = ResponseBean.class, responseContainer = "json" ) } )
     @CrossOrigin
-    public @ResponseBody Object registerUser(@RequestBody @Validated UserModifDTO userAdd) {
+    public @ResponseBody Object addOrUpadteUser(UserModifDTO userModif,@RequestParam(value = "file", required = false) MultipartFile file) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
-            if (userService.getUserNameCount(userAdd.getUserName()) != 0) {
-                ResponseBean responseBean=new ResponseBean(false,ExceptionEnums.USER_NAME_EXIST);
-                return responseBean;
-            } else if (userService.getUserNickNameCount(userAdd.getUserNickName()) != 0) {
-                ResponseBean responseBean=new ResponseBean(false,ExceptionEnums.USER_NICKNAME_EXIST);
-                return responseBean;
-            } else {
-                userService.newUser(userAdd);
-                ResponseBean responseBean=new ResponseBean(true,ExceptionEnums.SUCCESS);
-                return responseBean;
+            if(userModif.getId() == "" ||userModif.getId() == null){
+                if (userService.getUserNameCount(userModif.getUserName()) != 0) {
+                    ResponseBean responseBean=new ResponseBean(false,ExceptionEnums.USER_NAME_EXIST);
+                    return responseBean;
+                } else if (userService.getUserNickNameCount(userModif.getUserNickName()) != 0) {
+                    ResponseBean responseBean=new ResponseBean(false,ExceptionEnums.USER_NICKNAME_EXIST);
+                    return responseBean;
+                } else {
+                    String picId = pictureService.uploadPicture(file);
+                    userModif.setPicId(picId);
+                    userService.newUser(userModif);
+                    ResponseBean responseBean=new ResponseBean(true,ExceptionEnums.SUCCESS);
+                    return responseBean;
+                }
+            }else {
+                return new ResponseBean(false, ExceptionEnums.SEVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage());

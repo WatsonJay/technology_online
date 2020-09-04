@@ -21,7 +21,8 @@ export default {
   //校验规则
   rules:{
     common:{
-      pic:'请点击上传jpg/png文件，且不超过2M',
+      picType:'请点击上传jpg/png文件',
+      picSize:'上传图片大小不能超过2MB'
     },
     username: {
       notnull: '请输入用户名',

@@ -7,5 +7,5 @@ package com.learning.techonlineauthority.mapper;
  * @Description TODO
  * @createTime 2019年08月21日 10:43:00
  */
-public class RoleMapper {
+public interface RoleMapper {
 }

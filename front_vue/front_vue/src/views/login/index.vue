@@ -92,6 +92,7 @@
         this.$router.push({name:'Register'})
       },
       Login: function () {
+
         this.$refs.user.validate((valid) => {
           //代表通过验证 ,将参数传回后台
           if (valid){
@@ -222,7 +223,7 @@
         position: absolute;
         top: 7px;
         font-size: 18px;
-        right: 5px;
+          right: 5px;
         cursor: pointer;
       }
     }

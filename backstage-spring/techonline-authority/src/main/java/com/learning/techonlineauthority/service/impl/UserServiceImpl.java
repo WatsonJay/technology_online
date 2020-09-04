@@ -1,5 +1,6 @@
 package com.learning.techonlineauthority.service.impl;
 
+import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
@@ -33,17 +34,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements 
     @Autowired
     private UserMapper userMapper;
 
-    EncodeAndDecode encodeAndDecode;
-
     @Override
     public void newUser(UserModifDTO userAdd){
         UserPO user = EntityObjectConverter.getObject(userAdd, UserPO.class);
-        UserDTO checkUser = EntityObjectConverter.getObject(userAdd, UserDTO.class);
-        String password = encodeAndDecode.AESEncode(checkUser.getPassword());
+        String password = EncodeAndDecode.AESEncode(userAdd.getPassword());
         if ( password != ""){
             user.setPassword(password);
         }
         user.setUserStatus(1);
+        user.setId(IdUtil.simpleUUID());
         userMapper.insert(user);
     }
 
@@ -60,7 +59,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements 
     @Override
     public UserDTO verifyLoginUser(UserLoginDTO userLogin) {
         QueryWrapper<UserPO> condition = new QueryWrapper<>();
-        String password = encodeAndDecode.AESEncode(userLogin.getPassword());
+        String password = EncodeAndDecode.AESEncode(userLogin.getPassword());
         condition.eq("user_name",userLogin.getUserName()).eq("password",password);
         UserPO user = userMapper.selectOne(condition);
         UserDTO loginedUserMsg = EntityObjectConverter.getObject(user, UserDTO.class);

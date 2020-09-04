@@ -44,3 +44,4 @@ backstage-spring/log/warn.log
 backstage-spring/log/info.log
 backstage-spring/log/error.log
 backstage-spring/log/all.log
+*.log

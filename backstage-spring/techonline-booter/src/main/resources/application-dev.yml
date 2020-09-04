@@ -77,3 +77,9 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     cache-enabled: false
     log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+
+
+#SM.MS图床
+sm:
+  url: https://sm.ms/api/v2
+  token: pesfGnnDjWBB7BD9Dzbn8fRzGCdFcFYx

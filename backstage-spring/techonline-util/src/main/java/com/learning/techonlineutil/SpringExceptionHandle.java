@@ -1,8 +1,8 @@
 package com.learning.techonlineutil;
 
-import com.learning.techonlinepojo.Response.ResponseBean;
-import com.learning.techonlinepojo.ResponseException.ExceptionEnums;
-import com.learning.techonlinepojo.ResponseException.ResponseRuntimeException;
+import com.learning.techonlinepojo.Util.Response.ResponseBean;
+import com.learning.techonlinepojo.Util.ResponseException.ExceptionEnums;
+import com.learning.techonlinepojo.Util.ResponseException.ResponseRuntimeException;
 import org.apache.ibatis.binding.BindingException;
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
@@ -118,7 +118,7 @@ public class SpringExceptionHandle {
      * @author jaywatson 
      * @param: [e]
      * @updateTime 2019/8/20 10:22 
-     * @return: com.learning.techonlinepojo.Response.ResponseBean<java.lang.String>
+     * @return: com.learning.techonlinepojo.Util.Response.ResponseBean<java.lang.String>
      * @throws
      */
     @ExceptionHandler(value={AuthorizationException.class})

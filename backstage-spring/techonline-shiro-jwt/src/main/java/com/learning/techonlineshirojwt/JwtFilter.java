@@ -1,6 +1,6 @@
 package com.learning.techonlineshirojwt;
 
-import com.learning.techonlinepojo.JwtToken.JwtTokenBean;
+import com.learning.techonlinepojo.Util.JwtToken.JwtTokenBean;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.springframework.http.HttpStatus;

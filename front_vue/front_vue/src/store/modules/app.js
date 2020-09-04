@@ -6,7 +6,7 @@ const state = {
 }
 
 const mutations ={
-  SET_LANGUAGE: (state, language) => {
+  setLanguage: (state, language) => {
     state.language = language
     Cookies.set('language', language)
   },
@@ -14,7 +14,7 @@ const mutations ={
 
 const actions={
   setLanguage({ commit }, language) {
-    commit('SET_LANGUAGE', language)
+    commit('setLanguage', language)
   },
 }
 

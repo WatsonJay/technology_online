@@ -1,4 +1,4 @@
-package com.learning.techonlinepojo.JwtToken;
+package com.learning.techonlinepojo.Util.JwtToken;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
